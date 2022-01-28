@@ -1,7 +1,7 @@
 FROM openjdk:17
 
-MAINTAINER Thomas <thomaskittlaus@gmail.com>
+MAINTAINER Heinz <heinz.schloemer@gmx.net>
 
-ADD backend/target/template.jar template.jar
+ADD backend/target/doggybag.jar doggybag.jar
 
-CMD [ "sh", "-c", "java -Dserver.port=$PORT -Dspring.data.mongodb.uri=$URI -jar /template.jar" ]
+CMD [ "sh", "-c", "java -Dserver.port=$PORT -Dspring.data.mongodb.uri=$MONGO_DB_URI -jar /doggybag.jar" ]

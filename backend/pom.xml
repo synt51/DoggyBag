@@ -45,7 +45,7 @@
 
   <build>
     <finalName>
-      template <!-- Change to your App-Name -->
+      doggybag
     </finalName>
     <plugins>
       <plugin>
