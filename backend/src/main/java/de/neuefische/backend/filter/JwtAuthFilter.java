@@ -22,7 +22,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     private static final Log LOG = LogFactory.getLog(JwtAuthFilter.class);
 
    private final JWTUtils jwtUtils;
-    final MongoUserDetailsService userService;
+   private final MongoUserDetailsService userService;
 
     public JwtAuthFilter(JWTUtils jwtUtils, MongoUserDetailsService userService) {
         this.jwtUtils = jwtUtils;
