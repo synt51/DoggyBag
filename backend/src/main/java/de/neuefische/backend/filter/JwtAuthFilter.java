@@ -21,7 +21,7 @@ import java.io.IOException;
 public class JwtAuthFilter extends OncePerRequestFilter {
     private static final Log LOG = LogFactory.getLog(JwtAuthFilter.class);
 
-    final JWTUtils jwtUtils;
+   private final JWTUtils jwtUtils;
     final MongoUserDetailsService userService;
 
     public JwtAuthFilter(JWTUtils jwtUtils, MongoUserDetailsService userService) {
