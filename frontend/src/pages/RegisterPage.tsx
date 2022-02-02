@@ -1,19 +1,18 @@
-import React, {FormEvent, useContext, useState} from 'react';
 import {Button, TextField} from "@mui/material";
-import SendIcon from '@mui/icons-material/Send';
-import './LoginPage.scss';
-import {loginRequest} from "../service/RequestService";
+import SendIcon from "@mui/icons-material/Send";
+import React, {FormEvent, useContext, useState} from "react";
+import {RegisterData} from "../models/RegisterData";
+import {useNavigate} from "react-router-dom";
+import {registerRequest} from "../service/RequestService";
 import {AuthContext} from "../context/AuthProvider";
-import {Link, useNavigate} from "react-router-dom";
-import {LoginData} from "../models/LoginData";
 
-
-export default function LoginPage() {
+export default function RegisterPage(){
 
     const [name, setName] = useState<string>()
+    const [email, setEmail] = useState<string>()
     const [password, setPassword] = useState<string>()
 
-    const loginData = {name, password} as LoginData;
+    const registerData = {name, email, password} as RegisterData;
 
     const {setJwt} = useContext(AuthContext)
 
@@ -21,28 +20,26 @@ export default function LoginPage() {
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        loginRequest(loginData)
+        registerRequest(registerData)
             .then((data: string) => {
                 setJwt(data)
                 navigate('/')
             })
-            .catch(()=> console.error)
+            .catch(() => console.error)
     }
+
 
     return (
         <div className="loginPage">
-            <h1>Login</h1>
+            <h1>Register</h1>
             <form onSubmit={handleSubmit}>
                 <TextField className="loginInput" id="outlined-basic" label="Username" required variant="outlined" value={name}/>
+                <TextField className="loginInput" id="outlined-basic" label="Email" required variant="outlined" value={email}/>
                 <TextField type="password" className="loginInput" id="outlined-basic" label="Password" required variant="outlined" value={password}/>
                 <Button type="submit" variant="contained" endIcon={<SendIcon />}>
-                    Log in
+                    Register now
                 </Button>
             </form>
-            <h3>Still not registrated?</h3>
-            <Link to="/registration">
-                <Button color="inherit">-Then click here-</Button>
-            </Link>
         </div>
     )
 }

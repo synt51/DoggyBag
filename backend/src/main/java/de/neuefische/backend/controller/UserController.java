@@ -1,6 +1,7 @@
 package de.neuefische.backend.controller;
 
 import de.neuefische.backend.service.MongoUserDetailsService;
+import de.neuefische.backend.service.RegisterService;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,9 +17,12 @@ import java.util.Collection;
 public class UserController {
 
     private final MongoUserDetailsService mongoUserDetailsService;
+    private final RegisterService registerService;
 
-    public UserController(MongoUserDetailsService mongoUserDetailsService) {
+
+    public UserController(MongoUserDetailsService mongoUserDetailsService, RegisterService registerService) {
         this.mongoUserDetailsService = mongoUserDetailsService;
+        this.registerService = registerService;
     }
 
     @GetMapping
