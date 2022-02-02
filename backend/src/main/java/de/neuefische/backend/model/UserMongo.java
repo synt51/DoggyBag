@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Document(collection = "user")
+@Document("user")
 public class UserMongo implements UserDetails {
 
     public UserMongo (String username, String password, String email, Collection<? extends GrantedAuthority> authorities){
