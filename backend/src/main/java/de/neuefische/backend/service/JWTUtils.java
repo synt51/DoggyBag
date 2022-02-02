@@ -3,6 +3,7 @@ package de.neuefische.backend.service;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
@@ -13,7 +14,8 @@ import java.util.Map;
 @Service
 public class JWTUtils {
 
-    static final String SECRET = "testingSecretWillBeChangedLater"; //todo change secret
+    @Value(value = "${SECRET_KEY}")
+    private String SECRET;
 
     public String createToken(Map<String, Object> claims, String subject){
         return Jwts.builder()

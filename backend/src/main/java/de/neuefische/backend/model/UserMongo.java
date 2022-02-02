@@ -20,34 +20,25 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Document(collection = "user")
+@Document("user")
 public class UserMongo implements UserDetails {
-    public static UserMongo newUser(String username, String password, List<String> authorities){
-        return UserMongo.builder()
-                .username(username)
-                .password(password)
-                .rights(authorities)
-                .enabled(true)
-                .accountNonExpired(true)
-                .accountNonLocked(true)
-                .credentialsNonExpired(true)
-                .build();
+
+    public UserMongo (String username, String password, String email, Collection<? extends GrantedAuthority> authorities){
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.authorities = authorities;
     }
 
     @Id
     String username;
     String password;
-    private List<String> rights;
+    String email;
+    Collection<? extends GrantedAuthority> authorities;
     boolean enabled;
     boolean accountNonExpired;
     boolean accountNonLocked;
     boolean credentialsNonExpired;
 
-    @Override
-    @Transient
-    public Collection<? extends GrantedAuthority> getAuthorities(){
-        return rights.stream()
-                .map(SimpleGrantedAuthority::new)
-                .collect(Collectors.toCollection(ArrayList::new));
-    }
+
 }
