@@ -1,4 +1,4 @@
-import React, {FormEvent, useContext, useState} from 'react';
+import React, {ChangeEvent, FormEvent, useContext, useState} from 'react';
 import {Button, TextField} from "@mui/material";
 import SendIcon from '@mui/icons-material/Send';
 import './LoginPage.scss';
@@ -29,12 +29,20 @@ export default function LoginPage() {
             .catch(()=> console.error)
     }
 
+    const onNameChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setName(event.target.value)
+    }
+
+    const onPasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setPassword(event.target.value)
+    }
+
     return (
         <div className="loginPage">
             <h1>Login</h1>
             <form onSubmit={handleSubmit}>
-                <TextField className="loginInput" id="outlined-basic" label="Username" required variant="outlined" value={name}/>
-                <TextField type="password" className="loginInput" id="outlined-basic" label="Password" required variant="outlined" value={password}/>
+                <TextField className="loginInput" id="outlined-basic" label="Username" required variant="outlined" onChange={onNameChange} value={name}/>
+                <TextField type="password" className="loginInput" id="outlined-basic" label="Password" required variant="outlined" onChange={onPasswordChange} value={password}/>
                 <Button type="submit" variant="contained" endIcon={<SendIcon />}>
                     Log in
                 </Button>
