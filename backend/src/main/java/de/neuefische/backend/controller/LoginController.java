@@ -34,10 +34,10 @@ public class LoginController {
     public String login(@RequestBody LoginData loginData){
         try {
             authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(loginData.getName(), loginData.getPassword())
+                    new UsernamePasswordAuthenticationToken(loginData.getUsername(), loginData.getPassword())
             );
-            LOG.info("User " + loginData.getName() + " is logged in.");
-            return jwtService.createToken(new HashMap<>(), loginData.getName());
+            LOG.info("User " + loginData.getUsername() + " is logged in.");
+            return jwtService.createToken(new HashMap<>(), loginData.getUsername());
         } catch (AuthenticationException e){
             LOG.warn("Username and/or password is invalid. Try again.");
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "invalid credentials");
