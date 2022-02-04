@@ -1,10 +1,9 @@
 import {Button, TextField} from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
-import React, {ChangeEvent, FormEvent, useContext, useState} from "react";
+import React, {ChangeEvent, FormEvent, useState} from "react";
 import {RegisterData} from "../models/RegisterData";
 import {useNavigate} from "react-router-dom";
 import {registerRequest} from "../service/RequestService";
-import {AuthContext} from "../context/AuthProvider";
 
 export default function RegisterPage(){
 
@@ -14,16 +13,15 @@ export default function RegisterPage(){
 
     const registerData = {username, email, password} as RegisterData;
 
-    const {setJwt} = useContext(AuthContext)
+    //const {setJwt} = useContext(AuthContext)
 
     const navigate = useNavigate()
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         registerRequest(registerData)
-            .then((data: string) => {
-                setJwt(data)
-                navigate('/')
+            .then(() => {
+                navigate('/login')
             })
             .catch(() => console.error)
     }
@@ -49,7 +47,7 @@ export default function RegisterPage(){
                 <TextField className="loginInput" id="outlined-basic" label="Email" required variant="outlined" onChange={onEmailChange} value={email}/>
                 <TextField type="password" className="loginInput" id="outlined-basic" label="Password" required variant="outlined" onChange={onPasswordChange} value={password}/>
                 <Button type="submit" variant="contained" endIcon={<SendIcon />}>
-                    Register now
+                    Register now!
                 </Button>
             </form>
         </div>

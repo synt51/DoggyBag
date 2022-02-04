@@ -23,6 +23,7 @@ export default function LoginPage() {
         event.preventDefault()
         loginRequest(loginData)
             .then((data: string) => {
+                console.log("test123")
                 setJwt(data)
                 navigate('/')
             })
