@@ -18,7 +18,7 @@ export default function NavBar() {
                     >
                         <MenuIcon/>
                     </IconButton>
-                    <img src="../doggyBagLogo.svg" className="logo" />
+
                     <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
                         DoggyBag
                     </Typography>
