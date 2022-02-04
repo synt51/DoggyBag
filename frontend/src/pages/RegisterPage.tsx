@@ -8,9 +8,9 @@ import {AuthContext} from "../context/AuthProvider";
 
 export default function RegisterPage(){
 
-    const [username, setUsername] = useState<string>()
-    const [email, setEmail] = useState<string>()
-    const [password, setPassword] = useState<string>()
+    const [username, setUsername] = useState<string>("")
+    const [email, setEmail] = useState<string>("")
+    const [password, setPassword] = useState<string>("")
 
     const registerData = {username, email, password} as RegisterData;
 

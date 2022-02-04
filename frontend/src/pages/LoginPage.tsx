@@ -10,8 +10,8 @@ import {LoginData} from "../models/LoginData";
 
 export default function LoginPage() {
 
-    const [username, setUsername] = useState<string>()
-    const [password, setPassword] = useState<string>()
+    const [username, setUsername] = useState<string>("")
+    const [password, setPassword] = useState<string>("")
 
     const loginData = {username, password} as LoginData;
 
