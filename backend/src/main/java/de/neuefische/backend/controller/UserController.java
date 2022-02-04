@@ -36,7 +36,7 @@ public class UserController {
         if (isAllowed){
             return "Welcome " + username + ", hope you're doing fine.";
         } else {
-            return "Access denied!!! Permission is missing!!!";
+            return "Access denied! Permission is missing!";
         }
     }
 
