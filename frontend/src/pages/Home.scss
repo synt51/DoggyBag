@@ -3,12 +3,33 @@
   justify-content: center;
 }
 
+.upper-box{
+  position: absolute;
+}
+
 .title{
   position: absolute;
+  text-align: center;
 }
 
 .locationButton{
   position: relative;
-  top: 90px;
+  top: 120px;
+  width: 150px;
+}
+
+.lower-box{
+  position: absolute;
+  top: 290px;
+}
+
+.map {
+  position: relative;
+  text-align: center;
+}
+
+.markerButton{
+  position: relative;
+  top: 200px;
   width: 150px;
 }
