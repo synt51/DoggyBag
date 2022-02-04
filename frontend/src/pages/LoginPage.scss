@@ -1,6 +1,22 @@
 .loginPage {
-  background: orange;
-  display: flex;
+  background: linear-gradient(hsl(26.5, 97.6%, 67.3%), white 6.55rem);
+  display: grid;
   justify-content: center;
+}
+
+h1{
+  text-align: center;
+}
+
+.input{
+  top:100px;
   align-items: center;
+}
+
+h3 {
+  align-items: center;
+}
+
+.registerButton{
+  top: 20px;
 }
