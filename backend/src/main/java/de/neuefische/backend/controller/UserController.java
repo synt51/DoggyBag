@@ -1,12 +1,11 @@
 package de.neuefische.backend.controller;
 
+import de.neuefische.backend.model.UserDto;
 import de.neuefische.backend.service.MongoUserDetailsService;
 import de.neuefische.backend.service.RegisterService;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.Collection;
@@ -37,7 +36,13 @@ public class UserController {
         if (isAllowed){
             return "Welcome " + username + ", hope you're doing fine.";
         } else {
-            return "Access denied!!! Permission is missing!!!";
+            return "Access denied! Permission is missing!";
         }
     }
+
+    @PostMapping("/register")
+    public void register(@RequestBody UserDto userDto){
+        registerService.registerUser(userDto);
+    }
+
 }

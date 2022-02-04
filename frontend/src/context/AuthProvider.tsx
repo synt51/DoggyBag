@@ -8,7 +8,7 @@ export interface AuthContextType {
 }
 
 export const AuthContext = createContext<AuthContextType>({
-    setJwt: (data) => {throw Error("default function has not been initialized")}
+    setJwt: () => {throw Error("default function has not been initialized")}
 })
 
 export default function AuthProvider({children} : {children: ReactElement<any, any>}) {

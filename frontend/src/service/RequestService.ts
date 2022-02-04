@@ -8,6 +8,6 @@ export const loginRequest = (loginInput: LoginData) =>
         .catch(console.error)
 
 export const registerRequest = (loginInput: RegisterData) =>
-    axios.post("/api/user/register", loginInput) //todo: insert register url
+    axios.post("/api/register", loginInput)
         .then(response => response.data)
         .catch(console.error)
