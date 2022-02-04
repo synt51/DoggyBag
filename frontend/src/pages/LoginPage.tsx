@@ -10,10 +10,10 @@ import {LoginData} from "../models/LoginData";
 
 export default function LoginPage() {
 
-    const [name, setName] = useState<string>()
+    const [username, setUsername] = useState<string>()
     const [password, setPassword] = useState<string>()
 
-    const loginData = {name, password} as LoginData;
+    const loginData = {username, password} as LoginData;
 
     const {setJwt} = useContext(AuthContext)
 
@@ -30,7 +30,7 @@ export default function LoginPage() {
     }
 
     const onNameChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setName(event.target.value)
+        setUsername(event.target.value)
     }
 
     const onPasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -41,7 +41,7 @@ export default function LoginPage() {
         <div className="loginPage">
             <h1>Login</h1>
             <form onSubmit={handleSubmit}>
-                <TextField className="loginInput" id="outlined-basic" label="Username" required variant="outlined" onChange={onNameChange} value={name}/>
+                <TextField className="loginInput" id="outlined-basic" label="Username" required variant="outlined" onChange={onNameChange} value={username}/>
                 <TextField type="password" className="loginInput" id="outlined-basic" label="Password" required variant="outlined" onChange={onPasswordChange} value={password}/>
                 <Button type="submit" variant="contained" endIcon={<SendIcon />}>
                     Log in
