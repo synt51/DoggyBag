@@ -2,10 +2,13 @@
   background: linear-gradient(hsl(26.5, 97.6%, 67.3%), white 6.55rem);
   display:flex;
   justify-content: center;
+  height: 100%;
+  width:100%;
 }
 
 .upper-box{
   position: absolute;
+  margin: 0 2rem;
 }
 
 .title{
@@ -20,17 +23,23 @@
 }
 
 .lower-box{
-  position: absolute;
-  top: 290px;
+  position: relative;
+  top: 200px;
+  width: 80%;
 }
 
 .map {
   position: relative;
-  text-align: center;
 }
 
 .markerButton{
-  position: relative;
-  top: 200px;
-  width: 150px;
+
+  //top: 20px;
+  //width: 150px;
+
+  top: 10%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+
 }
