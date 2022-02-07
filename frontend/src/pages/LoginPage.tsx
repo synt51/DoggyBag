@@ -53,10 +53,12 @@ export default function LoginPage() {
                 </form>
             </div>
             <div className="registerBox">
-                <h3>Still not registrated?</h3>
-                <Link to="/registration">
-                    <Button className="registerButton" color="inherit">-Then click here-</Button>
-                </Link>
+                <h3>Still not registered?</h3>
+                <Button className="registerButton" variant="contained">
+                    <Link to="/registration">
+                        -Then click here-
+                    </Link>
+                </Button>
             </div>
         </div>
     )
