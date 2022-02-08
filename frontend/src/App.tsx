@@ -13,8 +13,8 @@ export default function App() {
             <NavBar/>
             <AuthProvider>
                 <Routes>
-                    <Route path="/login" element={<LoginPage/>}/>
                     <Route path="/" element={<Home/>}/>
+                    <Route path="/login" element={<LoginPage/>}/>
                     <Route path="/registration" element={<RegisterPage/>}/>
                 </Routes>
             </AuthProvider>

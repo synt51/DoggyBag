@@ -1,0 +1,11 @@
+.appBar {
+  background-color: #fda25a;
+}
+
+.avatar {
+
+
+  & :hover {
+    cursor: pointer;
+  }
+}

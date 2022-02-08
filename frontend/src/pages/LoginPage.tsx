@@ -27,7 +27,7 @@ export default function LoginPage() {
                 setJwt(data)
                 navigate('/')
             })
-            .catch(()=> console.error)
+            .catch(() => console.error)
     }
 
     const onNameChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -40,18 +40,26 @@ export default function LoginPage() {
 
     return (
         <div className="loginPage">
-            <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
-                <TextField className="loginInput" id="outlined-basic" label="Username" required variant="outlined" onChange={onNameChange} value={username}/>
-                <TextField type="password" className="loginInput" id="outlined-basic" label="Password" required variant="outlined" onChange={onPasswordChange} value={password}/>
-                <Button type="submit" variant="contained" endIcon={<SendIcon />}>
-                    Log in
+            <div className="loginBox">
+                <h1>Login</h1>
+                <form className="input" onSubmit={handleSubmit}>
+                    <TextField className="loginInput" id="outlined-basic" label="Username" required variant="outlined"
+                               onChange={onNameChange} value={username}/>
+                    <TextField type="password" className="loginInput" id="outlined-basic" label="Password" required
+                               variant="outlined" onChange={onPasswordChange} value={password}/>
+                    <Button type="submit" variant="contained" endIcon={<SendIcon/>}>
+                        Log in
+                    </Button>
+                </form>
+            </div>
+            <div className="registerBox">
+                <h3>Still not registered?</h3>
+                <Button className="registerButton" variant="contained">
+                    <Link to="/registration">
+                        -Then click here-
+                    </Link>
                 </Button>
-            </form>
-            <h3>Still not registrated?</h3>
-            <Link to="/registration">
-                <Button color="inherit">-Then click here-</Button>
-            </Link>
+            </div>
         </div>
     )
 }
