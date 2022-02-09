@@ -1,3 +1,4 @@
+import './LoginPage.scss';
 import {Button, TextField} from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import React, {ChangeEvent, FormEvent, useState} from "react";
@@ -12,8 +13,6 @@ export default function RegisterPage(){
     const [password, setPassword] = useState<string>("")
 
     const registerData = {username, email, password} as RegisterData;
-
-    //const {setJwt} = useContext(AuthContext)
 
     const navigate = useNavigate()
 
@@ -43,9 +42,9 @@ export default function RegisterPage(){
         <div className="loginPage">
             <h1>Register</h1>
             <form onSubmit={handleSubmit}>
-                <TextField className="loginInput" id="outlined-basic" label="Username" required variant="outlined" onChange={onNameChange} value={username}/>
-                <TextField className="loginInput" id="outlined-basic" label="Email" required variant="outlined" onChange={onEmailChange} value={email}/>
-                <TextField type="password" className="loginInput" id="outlined-basic" label="Password" required variant="outlined" onChange={onPasswordChange} value={password}/>
+                <TextField id="outlined-username" label="Username" required variant="outlined" onChange={onNameChange} value={username}/>
+                <TextField id="outlined-email" label="Email" required variant="outlined" onChange={onEmailChange} value={email}/>
+                <TextField type="password" id="outlined-password" label="Password" required variant="outlined" onChange={onPasswordChange} value={password}/>
                 <Button type="submit" variant="contained" endIcon={<SendIcon />}>
                     Register now!
                 </Button>

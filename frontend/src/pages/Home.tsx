@@ -3,8 +3,8 @@ import './Home.scss';
 import {MapContainer, TileLayer, Marker} from "react-leaflet";
 import L from "leaflet";
 import React, {useCallback, useEffect, useState} from "react";
-import useGeoLocation from "../hooks/useGeoLocation";
 import {Language} from "@mui/icons-material";
+import useGeoLocation from "../hooks/useGeoLocation";
 
 
 const markerIcon = new L.Icon({
