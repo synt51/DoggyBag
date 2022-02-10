@@ -55,78 +55,19 @@ export default function ShowBagPlaces({data}: { data: any }) {
         };
     }, [map, onMove]);
 
-    const points = data?.map((bagPlace: any) => ({
-        type: "Feature",
-        properties: {cluster: false, bagPlaceId: bagPlace.id},
-        geometry: {
-            type: "Point",
-            coordinates: [
-                parseFloat(bagPlace.longitude),
-                parseFloat(bagPlace.latitude),
-            ],
-        },
-    }));
-
-    const {clusters, supercluster} = useSupercluster({
-        points: points,
-        bounds: bounds,
-        zoom: zoom,
-        options: {radius: 75, maxZoom: 17},
-    });
-
-    console.log(clusters.length);
-    console.log(data)
-    console.log(data[0].lat)
-    console.log(data.lng)
-
 
     return (
         <>
-                <Marker
-                    position={[data[0].lat, data[0].lng]}
-                    icon={bagPlaceIcon}/>
+            <Marker
+                position={[data[0].lat, data[0].lng]}
+                icon={bagPlaceIcon}/>
+            <Marker
+                position={[data[1].lat, data[1].lng]}
+                icon={bagPlaceIcon}/>
+            <Marker
+                position={[data[2].lat, data[2].lng]}
+                icon={bagPlaceIcon}/>
         </>
-        // <>
-        //     {clusters.map((cluster) => {
-        //         // every cluster point has coordinates
-        //         const [longitude, latitude] = cluster.geometry.coordinates;
-        //         // the point may be either a cluster or a crime point
-        //         const { cluster: isCluster, point_count: pointCount } =
-        //             cluster.properties;
-        //
-        //         // we have a cluster to render
-        //         if (isCluster) {
-        //             return (
-        //                 <Marker
-        //                     key={`cluster-${cluster.id}`}
-        //                     position={[latitude, longitude]}
-        //                     icon={fetchIcon(
-        //                         {count: pointCount, size: 10 + (pointCount / points.length) * 40}
-        //                     )}
-        //                     eventHandlers={{
-        //                         click: () => {
-        //                             const expansionZoom = Math.min(
-        //                                 supercluster.getClusterExpansionZoom(cluster.id),
-        //                                 maxZoom
-        //                             );
-        //                             map.setView([latitude, longitude], expansionZoom, {
-        //                                 animate: true,
-        //                             });
-        //                         },
-        //                     }}
-        //                 />
-        //             );
-        //         }
-        //
-        //         // we have a single point (crime) to render
-        //         return (
-        //             <Marker
-        //                 position={[data[0].lat, data[0].lng]}
-        //                 icon={bagPlaceIcon}
-        //             />
-        //         );
-        //     })}
-        // </>
     );
 
 }

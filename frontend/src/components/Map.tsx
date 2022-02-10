@@ -5,6 +5,9 @@ import useGeoLocation from "../hooks/useGeoLocation";
 import L from "leaflet";
 import {useQuery} from "react-query";
 import axios from "axios";
+import {Language} from "@mui/icons-material";
+import {Button} from "@mui/material";
+import './Map.scss';
 
 const markerIcon = new L.Icon({
     iconUrl: require("../resources/images/marker.png"),
@@ -17,7 +20,14 @@ export default function Map() {
     const location = useGeoLocation();
     const [map, setMap] = useState<L.Map>();
     const [center, setCenter] = useState({lat: 50.941278, lng: 6.958281});
-    const ZOOM_LEVEL_DEFAULT = 9;
+    const ZOOM_LEVEL_DEFAULT = 7;
+    const ZOOM_LEVEL_CURRENT = 18;
+
+    const showLocation = useCallback(() => {
+        if (location.coordinates && map) {
+            map.flyTo(location.coordinates, ZOOM_LEVEL_CURRENT)
+        }
+    }, [map, location])
 
 
     const onMove = useCallback(() => {
@@ -42,29 +52,39 @@ export default function Map() {
     console.log(data);
 
     return (
-        <MapContainer center={center} zoom={ZOOM_LEVEL_DEFAULT} whenCreated={setMap}>
-            <TileLayer
-                attribution={'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}
-                url={"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"}
-            />
-            {location.loaded && !location.error && location.coordinates && (
-                <Marker
-                    icon={markerIcon}
-                    position={[
-                        location.coordinates.lat,
-                        location.coordinates.lng,
-                    ]}
-                ></Marker>
-            )}
-            {status === 'loading' && (
-                <div>Loading data...</div>
-            )}
-            {status === 'error' && (
-                <div>Error fetching data</div>
-            )}
-            {status === 'success' && (
-                <ShowBagPlaces data={data}/>
-            )}
-        </MapContainer>
+        <>
+            <Button className="locationButton" variant="contained" color="success" endIcon={<Language/>}
+                    onClick={showLocation}>
+                Get current location
+            </Button>
+            <MapContainer center={center} zoom={ZOOM_LEVEL_DEFAULT} whenCreated={setMap}>
+                <TileLayer
+                    attribution={'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}
+                    url={"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"}
+                />
+                {location.loaded && !location.error && location.coordinates && (
+                    <Marker
+                        icon={markerIcon}
+                        position={[
+                            location.coordinates.lat,
+                            location.coordinates.lng,
+                        ]}
+                    ></Marker>
+                )}
+                {status === 'loading' && (
+                    <div>Loading data...</div>
+                )}
+                {status === 'error' && (
+                    <div>Error fetching data</div>
+                )}
+                {status === 'success' && (
+                    <ShowBagPlaces data={data}/>
+                )}
+            </MapContainer>
+            {/*creates new doggy bag marker (ONLY IF LOGGED IN) */}
+            <Button className="markerButton" variant="contained" color="success">
+                Mark new Doggy Bag Place
+            </Button>
+        </>
     );
 }
