@@ -87,8 +87,7 @@ export default function NavBar() {
                 </Toolbar>
             </AppBar>
         </Box>
-    )
-        ;
+    );
 
 
     // return (
