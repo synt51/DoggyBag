@@ -1,10 +1,11 @@
 package de.neuefische.backend.controller;
 
 import de.neuefische.backend.model.BagPlaces;
-import de.neuefische.backend.model.BagPlacesDTO;
+import de.neuefische.backend.model.BagPlacesCreationDTO;
 import de.neuefische.backend.service.BagPlacesService;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -24,7 +25,7 @@ public class BagPlacesController {
     }
 
     @PostMapping
-    public void createBagPlaces(@RequestBody BagPlacesDTO bagPlacesDTO){
-        bagPlacesService.createBagPlace(bagPlacesDTO);
+    public BagPlaces createBagPlaces(Principal principal, @RequestBody BagPlacesCreationDTO bagPlacesCreationDTO ){
+        return bagPlacesService.createBagPlace(bagPlacesCreationDTO, principal.getName());
     }
 }
