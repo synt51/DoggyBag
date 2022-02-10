@@ -12,34 +12,18 @@
 }
 
 .title{
-  position: absolute;
   text-align: center;
+  width: 192px;
 }
 
-.locationButton{
-  position: relative;
-  top: 109px;
-  width: 193px;
-}
+
 
 .lower-box{
   position: relative;
-  top: 200px;
+  top: 157px;
   width: 80%;
 }
 
 .map {
   position: relative;
-}
-
-.markerButton{
-
-  //top: 20px;
-  //width: 150px;
-
-  top: 10%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-
 }

@@ -4,7 +4,7 @@ import SendIcon from '@mui/icons-material/Send';
 import './LoginPage.scss';
 import {loginRequest} from "../service/RequestService";
 import {AuthContext} from "../context/AuthProvider";
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {LoginData} from "../models/LoginData";
 
 
@@ -37,15 +37,19 @@ export default function LoginPage() {
         setPassword(event.target.value)
     }
 
+    const handleRegisterButton = () => {
+        navigate('/registration')
+    }
+
     return (
         <div className="loginPage">
             <div className="loginBox">
                 <h1>Login</h1>
                 <form className="input" onSubmit={handleSubmit}>
-                    <TextField className="loginInput" id="outlined-basic" label="Username" required variant="outlined"
+                    <TextField id="outlined-username" label="Username" required variant="outlined"
                                onChange={onNameChange} value={username}/>
-                    <TextField type="password" className="loginInput" id="outlined-basic" label="Password" required
-                               variant="outlined" onChange={onPasswordChange} value={password}/>
+                    <TextField type="password" id="outlined-password" label="Password" required
+                               variant="outlined" onChange={onPasswordChange}  value={password}/>
                     <Button type="submit" variant="contained" endIcon={<SendIcon/>}>
                         Log in
                     </Button>
@@ -53,10 +57,8 @@ export default function LoginPage() {
             </div>
             <div className="registerBox">
                 <h3>Still not registered?</h3>
-                <Button className="registerButton" variant="contained">
-                    <Link to="/registration">
+                <Button className="registerButton" variant="contained" onClick={handleRegisterButton}>
                         -Then click here-
-                    </Link>
                 </Button>
             </div>
         </div>
