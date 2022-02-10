@@ -16,3 +16,10 @@ export const registerRequest = (loginInput: RegisterData) =>
     axios.post("/api/register", loginInput)
         .then(response => response.data)
         .catch(console.error)
+
+export const createBagPlace = () =>
+    axios.post("/api/bagplaces")
+
+export const getBagPlaces = () =>
+    axios.get("/api/bagplaces")
+        .then(response => response.data)
