@@ -12,7 +12,7 @@ export default function MedDog() {
         <div className="medDog">
             <div className="title">
                 <h1>MedDog</h1>
-                <h4>Your time companion</h4>
+                <h4>Your dogs' time companion</h4>
             </div>
             <div className="calendar">
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
