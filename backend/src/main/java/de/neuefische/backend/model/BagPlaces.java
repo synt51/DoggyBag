@@ -25,9 +25,8 @@ public class BagPlaces {
     private double lng;
 
 
-    public static BagPlaces newBagPlace(String id, String username, LocalDateTime creationDate, double lat, double lng){
+    public static BagPlaces newBagPlace(String username, LocalDateTime creationDate, double lat, double lng){
         return BagPlaces.builder()
-                .id(id)
                 .username(username)
                 .creationDate(creationDate)
                 .lat(lat)
