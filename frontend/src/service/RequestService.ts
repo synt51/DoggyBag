@@ -2,6 +2,7 @@ import axios from "axios";
 import {LoginData} from "../models/LoginData";
 import {RegisterData} from "../models/RegisterData";
 import {BagPlaceCreationDTO} from "../models/BagPlaceCreationDTO";
+import {AppointmentDTO} from "../models/AppointmentDTO";
 
 export const loginRequest = (loginInput: LoginData) =>
     axios.post("auth/login", loginInput)
@@ -36,3 +37,21 @@ export const createBagPlace = (newMarker: BagPlaceCreationDTO, token?: string) =
 export const getBagPlaces = () =>
     axios.get("/api/bagplaces")
         .then(response => response.data)
+
+export const saveAppointment = (appointment: AppointmentDTO, token?: string) => {
+    return axios.post("/api/appointments", appointment, token ? {
+        headers: {
+            "Authorization": token
+        }
+    }: {})
+        .then(response => response.data)
+}
+
+export const deleteAppointment = (appointment: string, token?: string) => {
+    return axios.delete(`/api/appointments/${appointment}`, token ? {
+        headers: {
+            "Authorization": token
+        }
+    }: {})
+        .then(response => response.data)
+}
