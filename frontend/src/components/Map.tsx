@@ -37,7 +37,6 @@ export default function Map() {
         }
     }, [map, location])
 
-
     const createMarkerAtLocation = () => {
         if (location.coordinates && map) {
             console.log(location.coordinates)
@@ -45,7 +44,6 @@ export default function Map() {
             navigate('/')
         }
     }
-
 
     const onMove = useCallback(() => {
         if (map?.getCenter()) {

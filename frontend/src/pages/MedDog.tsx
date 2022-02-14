@@ -1,15 +1,20 @@
 import './MedDog.scss';
-import React from "react";
+import React, {ChangeEvent, useContext, useState} from "react";
 import AppointmentGallery from "../components/AppointmentGallery";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import {Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField} from "@mui/material";
 import {DateTimePicker, LocalizationProvider} from "@mui/lab";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import {addAppointment} from "../service/RequestService";
+import {AuthContext} from "../context/AuthProvider";
 
 export default function MedDog() {
 
     const [open, setOpen] = React.useState(false);
-    const [value, setValue] = React.useState<Date | null>(new Date());
+    const [appointment, setAppointment] = useState<string>("")
+    const [dateAndTime, setDateAndTime] = React.useState<Date | null>(new Date());
+
+    const {token} = useContext(AuthContext)
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -18,6 +23,15 @@ export default function MedDog() {
     const handleClose = () => {
         setOpen(false);
     };
+
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setAppointment(event.target.value)
+    }
+
+    const addNewAppointment = () => {
+        //addAppointment(appointment)
+    };
+
 
 
     return (
@@ -38,27 +52,28 @@ export default function MedDog() {
                         </DialogContentText>
                         <TextField
                             autoFocus
-                            margin="dense"
-                            id="name"
+                            margin="normal"
                             label="Appointment"
-                            type="name"
+                            type="text"
                             fullWidth
                             variant="standard"
+                            onChange={handleChange}
+                            value={appointment}
                         />
                         <LocalizationProvider dateAdapter={AdapterDateFns}>
                             <DateTimePicker
                                 renderInput={(props) => <TextField {...props} />}
                                 label="Date & Time"
-                                value={value}
+                                value={dateAndTime}
                                 onChange={(newValue) => {
-                                    setValue(newValue);
+                                    setDateAndTime(newValue);
                                 }}
                             />
                         </LocalizationProvider>
                     </DialogContent>
                     <DialogActions>
                         <Button variant ="contained" color="error" onClick={handleClose}>Cancel</Button>
-                        <Button variant ="contained" color="success" onClick={handleClose}>Add</Button>
+                        <Button variant ="contained" color="success" onClick={addNewAppointment}>Add</Button>
                     </DialogActions>
                 </Dialog>
                 <AppointmentGallery/>
