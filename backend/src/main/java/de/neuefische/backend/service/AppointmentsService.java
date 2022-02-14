@@ -3,6 +3,7 @@ package de.neuefische.backend.service;
 import de.neuefische.backend.BackendApplication;
 import de.neuefische.backend.model.AppointmentCreationDTO;
 import de.neuefische.backend.model.Appointments;
+import de.neuefische.backend.model.UserMongo;
 import de.neuefische.backend.repo.AppointmentsRepository;
 import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
@@ -22,8 +23,9 @@ public class AppointmentsService {
         this.appointmentsRepository = appointmentsRepository;
     }
 
-    public List<Appointments> getAll() {
-        return appointmentsRepository.findAll();
+    public List<Appointments> getAppointmentsOfUser(UserMongo userMongo){
+        LOG.info("Loading " + userMongo.getUsername() + "'s appointments");
+        return appointmentsRepository.findAllByUsername(userMongo.getUsername());
     }
 
     public Appointments createAppointment(@Validated AppointmentCreationDTO data, String username){
