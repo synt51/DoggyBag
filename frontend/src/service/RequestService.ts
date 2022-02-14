@@ -38,6 +38,15 @@ export const getBagPlaces = () =>
     axios.get("/api/bagplaces")
         .then(response => response.data)
 
+export const getAppointments = (token?: string) => {
+    axios.get("/api/appointments", token ? {
+        headers: {
+            "Authorization": token
+        }
+    }: {})
+        .then(response => response.data)
+}
+
 export const saveAppointment = (appointment: AppointmentDTO, token?: string) => {
     return axios.post("/api/appointments", appointment, token ? {
         headers: {
