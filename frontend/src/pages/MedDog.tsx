@@ -65,9 +65,7 @@ export default function MedDog() {
                                 renderInput={(props) => <TextField {...props} />}
                                 label="Date & Time"
                                 value={dateAndTime}
-                                onChange={(newValue) => {
-                                    setDateAndTime(newValue);
-                                }}
+                                onChange={setDateAndTime}
                             />
                         </LocalizationProvider>
                     </DialogContent>
