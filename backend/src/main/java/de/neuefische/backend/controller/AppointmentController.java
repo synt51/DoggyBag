@@ -1,7 +1,7 @@
 package de.neuefische.backend.controller;
 
 import de.neuefische.backend.model.AppointmentCreationDTO;
-import de.neuefische.backend.model.Appointments;
+import de.neuefische.backend.model.Appointment;
 import de.neuefische.backend.model.UserMongo;
 import de.neuefische.backend.service.AppointmentsService;
 import de.neuefische.backend.service.MongoUserDetailsService;
@@ -38,13 +38,13 @@ public class AppointmentController {
     }
 
     @GetMapping
-    public List<Appointments> getAppointmentsOfUser(Principal principal){
+    public List<Appointment> getAppointmentsOfUser(Principal principal){
         UserMongo user = getUser(principal);
         return appointmentsService.getAppointmentsOfUser(user);
     }
 
     @PostMapping
-    public Appointments createAppointment(Principal principal, @RequestBody AppointmentCreationDTO appointmentCreationDTO){
+    public Appointment createAppointment(Principal principal, @RequestBody AppointmentCreationDTO appointmentCreationDTO){
         return appointmentsService.createAppointment(appointmentCreationDTO, principal.getName());
     }
 }

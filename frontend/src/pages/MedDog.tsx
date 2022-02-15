@@ -5,18 +5,18 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import {Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField} from "@mui/material";
 import {DateTimePicker, LocalizationProvider} from "@mui/lab";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import {addAppointment} from "../service/RequestService";
+import {createAppointment} from "../service/RequestService";
 import {AuthContext} from "../context/AuthProvider";
 
 export default function MedDog() {
 
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const [appointment, setAppointment] = useState<string>("")
-    const [dateAndTime, setDateAndTime] = React.useState<Date | null>(new Date());
+    const [dateAndTime, setDateAndTime] = useState<Date | null>(new Date());
 
     const {token} = useContext(AuthContext)
 
-    const handleClickOpen = () => {
+    const handleOpen = () => {
         setOpen(true);
     };
 
@@ -29,10 +29,10 @@ export default function MedDog() {
     }
 
     const addNewAppointment = () => {
-        //addAppointment(appointment)
+        console.log(appointment)
+        console.log(dateAndTime)
+        createAppointment(dateAndTime,  token)
     };
-
-
 
     return (
         <div className="medDog">
@@ -41,7 +41,7 @@ export default function MedDog() {
                 <h4>Your dogs' time companion</h4>
             </div>
             <div className="calendar">
-                <Button className="calendarButton" variant="contained" color="success" endIcon={<AddCircleOutlineIcon/>} onClick={handleClickOpen}>
+                <Button className="calendarButton" variant="contained" color="success" endIcon={<AddCircleOutlineIcon/>} onClick={handleOpen}>
                     New Appointment?
                 </Button>
                 <Dialog open={open} onClose={handleClose}>
@@ -65,9 +65,7 @@ export default function MedDog() {
                                 renderInput={(props) => <TextField {...props} />}
                                 label="Date & Time"
                                 value={dateAndTime}
-                                onChange={(newValue) => {
-                                    setDateAndTime(newValue);
-                                }}
+                                onChange={setDateAndTime}
                             />
                         </LocalizationProvider>
                     </DialogContent>

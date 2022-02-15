@@ -8,28 +8,28 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Document("appointments")
-public class Appointments {
+@Document("bagPlaces")
+public class BagPlace {
 
     @Id
     private String id;
     private String username;
-    private String appointmentName;
     private LocalDateTime creationDate;
-    private Date endDate;
+    private double lat;
+    private double lng;
 
-    public static Appointments newAppointment (String username, String appointmentName, LocalDateTime creationDate, Date endDate){
-        return Appointments.builder()
+
+    public static BagPlace newBagPlace(String username, LocalDateTime creationDate, double lat, double lng){
+        return BagPlace.builder()
                 .username(username)
-                .appointmentName(appointmentName)
                 .creationDate(creationDate)
-                .endDate(endDate)
+                .lat(lat)
+                .lng(lng)
                 .build();
     }
 }

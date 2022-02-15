@@ -2,11 +2,12 @@ import './AppointmentCard.scss';
 import {useContext, useEffect, useState} from "react";
 import axios from "axios";
 import {AuthContext} from "../context/AuthProvider";
+import Appointment from "../models/Appointment";
 
 
 export default function AppointmentCard() {
 
-    const [appointments, setAppointments] = useState([])
+    const [appointments, setAppointments] = useState<Appointment[]>([])
 
     const {token} = useContext(AuthContext)
 
@@ -17,7 +18,6 @@ export default function AppointmentCard() {
             }
         } : {})
             .then(response => {
-                console.log(response)
                 setAppointments(response.data)
             })
             .catch(console.error)
@@ -25,11 +25,11 @@ export default function AppointmentCard() {
 
     return (
         <div className="card">
-            {appointments?.map((appointment: any) => (
+            {appointments?.map((appointment: Appointment) => (
                 <div key={appointment.username}>
                     <h3>{appointment.appointmentName}</h3>
                     <ul>
-                        <li>{appointment.endDate}</li>
+                        <li>{appointment.dateAndTime}</li>
                     </ul>
                 </div>
             ))}

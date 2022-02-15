@@ -34,8 +34,7 @@ export const createBagPlace = (newMarker: BagPlaceCreationDTO, token?: string) =
         })
 }
 
-
-export const addAppointment = (newAppointment: AppointmentDTO, token?: string) => {
+export const createAppointment = (newAppointment: AppointmentDTO, token?: string) => {
     return axios.post("/api/appointments", newAppointment, token ? {
         headers: {
             "Authorization": token
