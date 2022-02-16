@@ -47,4 +47,9 @@ public class AppointmentController {
     public Appointment createAppointment(Principal principal, @RequestBody AppointmentCreationDTO appointmentCreationDTO){
         return appointmentsService.createAppointment(appointmentCreationDTO, principal.getName());
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteAppointment(@PathVariable String id) {
+        appointmentsService.deleteAppointment(id);
+    }
 }

@@ -38,4 +38,11 @@ public class AppointmentsService {
         LOG.info("Due to: { " + appointment.getEndDate() + " }");
         return appointmentsRepository.insert(appointment);
     }
+
+    public Appointment deleteAppointment(String id) {
+        Appointment appointment = appointmentsRepository.findById(id).orElseThrow();
+        LOG.info("Appointment '" + appointment.getAppointmentName() + "' deleted.");
+        appointmentsRepository.deleteById(id);
+        return appointment;
+    }
 }
