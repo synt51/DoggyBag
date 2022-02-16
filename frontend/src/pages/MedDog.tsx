@@ -59,7 +59,7 @@ export default function MedDog() {
             </div>
             <div className="calendar">
                 <Button className="calendarButton" variant="contained" color="success" endIcon={<AddCircleOutlineIcon/>} onClick={handleOpen}>
-                    New Appointment?
+                    Add an Appointment?
                 </Button>
                 <Dialog open={open} onClose={handleClose}>
                     <DialogTitle>New Appointment</DialogTitle>
