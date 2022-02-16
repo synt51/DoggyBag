@@ -1,5 +1,5 @@
 export default interface Appointment{
-    appointmentID: string;
+    id: string;
     username: string;
     appointmentName: string;
     endDate: Date;

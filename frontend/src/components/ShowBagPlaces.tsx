@@ -2,6 +2,7 @@ import "./ShowBagPlaces.scss";
 import React from "react";
 import L from "leaflet";
 import {Marker} from "react-leaflet";
+import BagPlace from "../models/BagPlace";
 
 
 const bagPlaceIcon = new L.Icon({
@@ -9,13 +10,23 @@ const bagPlaceIcon = new L.Icon({
     iconSize: [35, 35]
 });
 
+interface ShowBagPlacesProps{
+    bagPlaces: BagPlace[]
+}
 
-export default function ShowBagPlaces({data}: { data: any }) {
+export default function ShowBagPlaces(props: ShowBagPlacesProps){
 
+    const {bagPlaces} = props
 
     return (
-        data.map((d: any) => (
-            <Marker key={d.id} position={[d.lat, d.lng] } icon={bagPlaceIcon}></Marker>))
+        <>
+            {bagPlaces.map((bagPlace) => (
+                <Marker
+                    key={bagPlace.id}
+                    position={[bagPlace.lat, bagPlace.lng]}
+                    icon={bagPlaceIcon}>
+                </Marker>))}
+        </>
     );
 
 }

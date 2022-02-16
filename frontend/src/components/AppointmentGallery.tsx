@@ -20,7 +20,7 @@ export default function AppointmentGallery(props: AppointmentGalleryProps) {
         <div className="gallery">
             {appointments.map( appointment => (
                 <AppointmentCard
-                    key={appointment.appointmentID}
+                    key={appointment.id}
                     name={appointment.appointmentName}
                     date={appointment.endDate}
                 />
