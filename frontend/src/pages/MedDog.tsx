@@ -1,20 +1,28 @@
 import './MedDog.scss';
-import React, {ChangeEvent, useContext, useState} from "react";
+import React, {ChangeEvent, useContext, useEffect, useState} from "react";
 import AppointmentGallery from "../components/AppointmentGallery";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import {Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField} from "@mui/material";
 import {DateTimePicker, LocalizationProvider} from "@mui/lab";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import {createAppointment} from "../service/RequestService";
+import {createAppointment, getAppointments} from "../service/RequestService";
 import {AuthContext} from "../context/AuthProvider";
+import Appointment from "../models/Appointment";
 
 export default function MedDog() {
 
     const [open, setOpen] = useState(false);
-    const [appointment, setAppointment] = useState<string>("")
-    const [dateAndTime, setDateAndTime] = useState<Date | null>(new Date());
+    const [appointmentName, setAppointmentName] = useState<string>("")
+    const [endDate, setEndDate] = useState<Date | null>(new Date());
+    const [appointments, setAppointments] = useState<Appointment[]>([])
 
     const {token} = useContext(AuthContext)
+
+    const setupAppointments = () => getAppointments(token).then(data => setAppointments(data))
+
+    useEffect( () => {
+        setupAppointments().catch(e => console.log(e.message))
+    },[token])
 
     const handleOpen = () => {
         setOpen(true);
@@ -25,14 +33,19 @@ export default function MedDog() {
     };
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setAppointment(event.target.value)
+        setAppointmentName(event.target.value)
+    }
+
+    const handleTimeChange = (newEndDate: Date | null) => {
+        setEndDate(newEndDate)
     }
 
     const addNewAppointment = () => {
-        console.log(appointment)
-        console.log(dateAndTime)
-        createAppointment(dateAndTime,  token)
+        createAppointment({appointmentName, endDate},  token);
+        getAppointments(token).then(data => setAppointments(data));
+        setOpen(false)
     };
+
 
     return (
         <div className="medDog">
@@ -58,14 +71,14 @@ export default function MedDog() {
                             fullWidth
                             variant="standard"
                             onChange={handleChange}
-                            value={appointment}
+                            value={appointmentName}
                         />
                         <LocalizationProvider dateAdapter={AdapterDateFns}>
                             <DateTimePicker
                                 renderInput={(props) => <TextField {...props} />}
                                 label="Date & Time"
-                                value={dateAndTime}
-                                onChange={setDateAndTime}
+                                value={endDate}
+                                onChange={handleTimeChange}
                             />
                         </LocalizationProvider>
                     </DialogContent>
@@ -74,7 +87,7 @@ export default function MedDog() {
                         <Button variant ="contained" color="success" onClick={addNewAppointment}>Add</Button>
                     </DialogActions>
                 </Dialog>
-                <AppointmentGallery/>
+                <AppointmentGallery appointments={appointments}/>
             </div>
         </div>
     )

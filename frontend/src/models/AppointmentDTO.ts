@@ -1,4 +1,4 @@
 export interface AppointmentDTO{
     appointmentName: string;
-    dateAndTime: Date;
+    endDate: Date | null;
 }
