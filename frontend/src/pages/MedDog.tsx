@@ -41,8 +41,13 @@ export default function MedDog() {
     }
 
     const addNewAppointment = () => {
-        createAppointment({appointmentName, endDate},  token).then(() => getAppointments(token).then(data => setAppointments(data)));
-        setOpen(false)
+        if (token) {
+            createAppointment({
+                appointmentName,
+                endDate
+            }, token).then(() => getAppointments(token).then(data => setAppointments(data)));
+            setOpen(false)
+        }
     };
 
 

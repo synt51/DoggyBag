@@ -1,38 +1,27 @@
 import './AppointmentCard.scss';
-import {useContext, useEffect, useState} from "react";
-import axios from "axios";
+import React, {useContext} from "react";
+import {Button} from "@mui/material";
+import {deleteAppointment} from "../service/RequestService";
 import {AuthContext} from "../context/AuthProvider";
-import Appointment from "../models/Appointment";
 
 
-export default function AppointmentCard() {
-
-    const [appointments, setAppointments] = useState<Appointment[]>([])
+export default function AppointmentCard(props: any) {
 
     const {token} = useContext(AuthContext)
 
-    useEffect(() => {
-        axios.get("/api/appointments", token? {
-            headers: {
-                "Authorization": token
-            }
-        } : {})
-            .then(response => {
-                setAppointments(response.data)
-            })
-            .catch(console.error)
-    }, [])
+    const deleteThisAppointment = () => {
+        if(token) {
+            deleteAppointment(props.id, token)
+        }
+    }
 
     return (
         <div className="card">
-            {appointments?.map((appointment: Appointment) => (
-                <div key={appointment.username}>
-                    <h3>{appointment.appointmentName}</h3>
+                    <h3>{props.name}</h3>
                     <ul>
-                        <li>{appointment.dateAndTime}</li>
+                        <li>{props.date}</li>
                     </ul>
-                </div>
-            ))}
+                    <Button variant ="contained" color="error" onClick={deleteThisAppointment} >Delete</Button>
         </div>
     )
 }

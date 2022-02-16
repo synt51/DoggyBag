@@ -19,6 +19,10 @@ export const registerRequest = (loginInput: RegisterData) =>
         .then(response => response.data)
         .catch(console.error)
 
+export const getBagPlaces =  () => {
+    return axios.get("/api/bagplaces").then(response => response.data)
+}
+
 export const createBagPlace = (newMarker: BagPlaceCreationDTO, token?: string) => {
     return axios.post("/api/bagplaces", newMarker, token ? {
         headers: {
@@ -43,7 +47,7 @@ export const getAppointments = (token?: string) => {
         .then(response => response.data)
 }
 
-export const createAppointment = (newAppointment: AppointmentDTO, token?: string) => {
+export const createAppointment = (newAppointment: AppointmentDTO, token: string) => {
     return axios.post("/api/appointments", newAppointment, token ? {
         headers: {
             "Authorization": token
@@ -58,8 +62,8 @@ export const createAppointment = (newAppointment: AppointmentDTO, token?: string
         })
 }
 
-export const deleteAppointment = (appointmentId: string, token?: string) => {
-    return axios.delete(`/api/appointments/${appointmentId}`, token ? {
+export const deleteAppointment = (id: string, token: string) => {
+    return axios.delete(`/api/appointments/${id}`, token ? {
         headers: {
             "Authorization": token
         }

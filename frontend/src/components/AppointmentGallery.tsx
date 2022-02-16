@@ -21,6 +21,7 @@ export default function AppointmentGallery(props: AppointmentGalleryProps) {
             {appointments.map( appointment => (
                 <AppointmentCard
                     key={appointment.id}
+                    id={appointment.id}
                     name={appointment.appointmentName}
                     date={appointment.endDate}
                 />
