@@ -1,4 +1,4 @@
-import {createContext, ReactElement, useState} from "react";
+import {createContext, ReactElement, useEffect, useState} from "react";
 import jwt_decode from 'jwt-decode';
 
 export interface AuthContextType {
@@ -12,12 +12,24 @@ export const AuthContext = createContext<AuthContextType>({
 })
 
 export default function AuthProvider({children} : {children: ReactElement<any, any>}) {
-    const [token, setToken] = useState<string>()
-    const [jwtDecoded, setJwtDecoded] = useState({})
+    const STORAGE_KEY = "Token"
+    const [token, setToken] = useState<string | undefined>(localStorage.getItem(STORAGE_KEY) || undefined)
+    const [jwtDecoded, setJwtDecoded] = useState()
+
+   useEffect(() => {
+        if (token !== undefined) {
+            localStorage.setItem(STORAGE_KEY, token)}
+    }, [token]);
 
     const setJwt = (jwt: string) => {
-        setToken(jwt)
-        setJwtDecoded(jwt_decode(jwt.toString()))
+        if (jwt === "") {
+            setToken(undefined);
+            setJwtDecoded(undefined);
+            localStorage.removeItem(STORAGE_KEY)
+        } else {
+            setToken(jwt)
+            setJwtDecoded(jwt_decode(jwt));
+        }
     }
 
     return (
