@@ -12,8 +12,8 @@ import MedDog from "./pages/MedDog";
 export default function App() {
     return (
         <BrowserRouter>
-            <NavBar/>
             <AuthProvider>
+                <NavBar/>
                 <Routes>
                     <Route path="/" element={<Home/>}/>
                     <Route path="/login" element={<LoginPage/>}/>
