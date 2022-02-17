@@ -16,7 +16,7 @@ export default function NavBar() {
 
     const navigate = useNavigate()
 
-    const {setJwt} =useContext(AuthContext)
+    const {setJwt} = useContext(AuthContext)
 
     const goToLogin = () => {
         navigate('/login')
@@ -130,45 +130,58 @@ export default function NavBar() {
                                 <Avatar className="avatar"/>
                             </IconButton>
                         </Tooltip>
-                        <Menu
-                            sx={{mt: '45px'}}
-                            id="menu-appbar"
-                            anchorEl={anchorElUser}
-                            anchorOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            open={Boolean(anchorElUser)}
-                            onClose={handleCloseUserMenu}
-                        >
-                            {localStorage.getItem('Token') ?
-                                <>
-                                    <MenuItem>
-                                        <Typography textAlign="center">Profile</Typography>
-                                    </MenuItem>
-                                    <MenuItem>
-                                        <Typography textAlign="center">Settings</Typography>
-                                    </MenuItem>
-                                    <MenuItem onClick={handleLogout}>
-                                        <Typography textAlign="center">Logout</Typography>
-                                    </MenuItem>
-                                </>
-                                :
-                                <>
-                                    <MenuItem onClick={goToLogin}>
-                                        <Typography textAlign="center">Login</Typography>
-                                    </MenuItem>
-                                    <MenuItem onClick={goToRegister}>
-                                        <Typography textAlign="center">Register</Typography>
-                                    </MenuItem>
-                                </>
-                            }
-                        </Menu>
+                        {localStorage.getItem('Token') ?
+                            <Menu
+                                sx={{mt: '45px'}}
+                                id="menu-appbar"
+                                anchorEl={anchorElUser}
+                                anchorOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                keepMounted
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                open={Boolean(anchorElUser)}
+                                onClose={handleCloseUserMenu}
+                            >
+                                <MenuItem>
+                                    <Typography textAlign="center">Profile</Typography>
+                                </MenuItem>
+                                <MenuItem>
+                                    <Typography textAlign="center">Settings</Typography>
+                                </MenuItem>
+                                <MenuItem onClick={handleLogout}>
+                                    <Typography textAlign="center">Logout</Typography>
+                                </MenuItem>
+                            </Menu>
+                            :
+                            <Menu
+                                sx={{mt: '45px'}}
+                                id="menu-appbar"
+                                anchorEl={anchorElUser}
+                                anchorOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                keepMounted
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                open={Boolean(anchorElUser)}
+                                onClose={handleCloseUserMenu}
+                            >
+                                <MenuItem onClick={goToLogin}>
+                                    <Typography textAlign="center">Login</Typography>
+                                </MenuItem>
+                                <MenuItem onClick={goToRegister}>
+                                    <Typography textAlign="center">Register</Typography>
+                                </MenuItem>
+                            </Menu>
+                        }
                     </Box>
                 </Toolbar>
             </AppBar>
