@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
 
 @Data
@@ -15,7 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 @Document("bagPlaces")
-public class BagPlaces {
+public class BagPlace {
 
     @Id
     private String id;
@@ -25,8 +24,8 @@ public class BagPlaces {
     private double lng;
 
 
-    public static BagPlaces newBagPlace(String username, LocalDateTime creationDate, double lat, double lng){
-        return BagPlaces.builder()
+    public static BagPlace newBagPlace(String username, LocalDateTime creationDate, double lat, double lng){
+        return BagPlace.builder()
                 .username(username)
                 .creationDate(creationDate)
                 .lat(lat)

@@ -16,7 +16,6 @@ export default function AuthProvider({children} : {children: ReactElement<any, a
     const [jwtDecoded, setJwtDecoded] = useState({})
 
     const setJwt = (jwt: string) => {
-        console.log(jwt)
         setToken(jwt)
         setJwtDecoded(jwt_decode(jwt.toString()))
     }

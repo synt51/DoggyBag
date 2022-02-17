@@ -2,8 +2,8 @@ package de.neuefische.backend.service;
 
 
 import de.neuefische.backend.BackendApplication;
-import de.neuefische.backend.model.BagPlaces;
-import de.neuefische.backend.model.BagPlacesCreationDTO;
+import de.neuefische.backend.model.BagPlace;
+import de.neuefische.backend.model.BagPlaceCreationDTO;
 import de.neuefische.backend.repo.BagPlacesRepository;
 import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
@@ -23,12 +23,12 @@ public class BagPlacesService {
         this.bagPlacesRepository = bagPlacesRepository;
     }
 
-    public List<BagPlaces> getAll() {
+    public List<BagPlace> getAll() {
         return bagPlacesRepository.findAll();
     }
 
-    public BagPlaces createBagPlace(@Validated BagPlacesCreationDTO data, String username) {
-        final BagPlaces bagPlace = BagPlaces.newBagPlace(username, LocalDateTime.now(), data.getLat(), data.getLng());
+    public BagPlace createBagPlace(@Validated BagPlaceCreationDTO data, String username) {
+        final BagPlace bagPlace = BagPlace.newBagPlace(username, LocalDateTime.now(), data.getLat(), data.getLng());
 
         LOG.info("New BagPlace created...");
         LOG.info("Creator: { " + bagPlace.getUsername() + " }");

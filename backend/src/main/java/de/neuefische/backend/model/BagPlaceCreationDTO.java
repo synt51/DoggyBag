@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BagPlacesCreationDTO {
+public class BagPlaceCreationDTO {
 
     private double lat;
     private double lng;

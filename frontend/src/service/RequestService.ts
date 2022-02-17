@@ -2,13 +2,14 @@ import axios from "axios";
 import {LoginData} from "../models/LoginData";
 import {RegisterData} from "../models/RegisterData";
 import {BagPlaceCreationDTO} from "../models/BagPlaceCreationDTO";
+import {AppointmentDTO} from "../models/AppointmentDTO";
 
 export const loginRequest = (loginInput: LoginData) =>
     axios.post("auth/login", loginInput)
         .then(response => response.data)
         .catch(function (error) {
             if (error.response.status === 400) {
-                alert("Please check your username and password")
+                alert("Please check your username and password!")
                 console.log(error)
             }
         })
@@ -17,6 +18,10 @@ export const registerRequest = (loginInput: RegisterData) =>
     axios.post("/api/register", loginInput)
         .then(response => response.data)
         .catch(console.error)
+
+export const getBagPlaces =  () => {
+    return axios.get("/api/bagplaces").then(response => response.data)
+}
 
 export const createBagPlace = (newMarker: BagPlaceCreationDTO, token?: string) => {
     return axios.post("/api/bagplaces", newMarker, token ? {
@@ -33,6 +38,35 @@ export const createBagPlace = (newMarker: BagPlaceCreationDTO, token?: string) =
         })
 }
 
-export const getBagPlaces = () =>
-    axios.get("/api/bagplaces")
+export const getAppointments = (token?: string) => {
+    return axios.get("/api/appointments", token ? {
+        headers: {
+            "Authorization": token
+        }
+    }:{})
         .then(response => response.data)
+}
+
+export const createAppointment = (newAppointment: AppointmentDTO, token: string) => {
+    return axios.post("/api/appointments", newAppointment, token ? {
+        headers: {
+            "Authorization": token
+        }
+    }: {})
+        .then(response => response.data)
+        .catch(function (error) {
+            if (error.response.status === 500) {
+                alert("You have to be logged in.")
+                console.log(error)
+            }
+        })
+}
+
+export const deleteAppointment = (id: string, token: string) => {
+    return axios.delete(`/api/appointments/${id}`, token ? {
+        headers: {
+            "Authorization": token
+        }
+    }: {})
+        .then(response => response.data)
+}
