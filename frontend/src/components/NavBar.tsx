@@ -4,7 +4,7 @@ import {
     Toolbar,
     Typography,
     IconButton,
-    Avatar, Menu, MenuItem
+    Avatar, Menu, MenuItem, Tooltip
 } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 import {useNavigate} from "react-router-dom";
@@ -15,8 +15,12 @@ export default function NavBar() {
 
     const navigate = useNavigate()
 
-    const handleAvatar = () => {
+    const goToLogin = () => {
         navigate('/login')
+    }
+
+    const goToRegister = () => {
+        navigate('/registration')
     }
 
     const goToGettingBags = () => {
@@ -47,6 +51,11 @@ export default function NavBar() {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+
+    const handleLogout = () => {
+        localStorage.clear()
+        window.location.reload()
+    }
 
     return (
         <Box sx={{flexGrow: 1}}>
@@ -95,7 +104,7 @@ export default function NavBar() {
                     <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
                         DoggyBag
                     </Typography>
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                    <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
                         <MenuItem onClick={goToGettingBags}>
                             <Typography textAlign="center">Getting bags</Typography>
                         </MenuItem>
@@ -106,7 +115,52 @@ export default function NavBar() {
                             <Typography textAlign="center">Med Dog</Typography>
                         </MenuItem>
                     </Box>
-                    <Avatar className="avatar" onClick={handleAvatar}/>
+                    <Box sx={{flexGrow: 0}}>
+                        <Tooltip title="Open settings">
+                            <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
+                                <Avatar className="avatar"/>
+                            </IconButton>
+                        </Tooltip>
+                        <Menu
+                            sx={{mt: '45px'}}
+                            id="menu-appbar"
+                            anchorEl={anchorElUser}
+                            anchorOrigin={{
+                                vertical: 'top',
+                                horizontal: 'right',
+                            }}
+                            keepMounted
+                            transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'right',
+                            }}
+                            open={Boolean(anchorElUser)}
+                            onClose={handleCloseUserMenu}
+                        >
+                            {localStorage.getItem('Token') ?
+                                <>
+                                    <MenuItem>
+                                        <Typography textAlign="center">Profile</Typography>
+                                    </MenuItem>
+                                    <MenuItem>
+                                        <Typography textAlign="center">Settings</Typography>
+                                    </MenuItem>
+                                    <MenuItem onClick={handleLogout}>
+                                        <Typography textAlign="center">Logout</Typography>
+                                    </MenuItem>
+                                </>
+                                :
+                                <>
+                                    <MenuItem onClick={goToLogin}>
+                                        <Typography textAlign="center">Login</Typography>
+                                    </MenuItem>
+                                    <MenuItem onClick={goToRegister}>
+                                        <Typography textAlign="center">Register</Typography>
+                                    </MenuItem>
+                                </>
+                            }
+                        </Menu>
+                    </Box>
                 </Toolbar>
             </AppBar>
         </Box>
