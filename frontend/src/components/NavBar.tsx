@@ -9,11 +9,14 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import {useNavigate} from "react-router-dom";
 import './NavBar.scss';
-import React from "react";
+import React, {useContext} from "react";
+import {AuthContext} from "../context/AuthProvider";
 
 export default function NavBar() {
 
     const navigate = useNavigate()
+
+    const {setJwt} =useContext(AuthContext)
 
     const goToLogin = () => {
         navigate('/login')
@@ -27,8 +30,7 @@ export default function NavBar() {
 
     const handleLogout = () => {
         handleCloseUserMenu()
-        localStorage.clear()
-        window.location.reload()
+        setJwt("")
         navigate('/')
     }
 
