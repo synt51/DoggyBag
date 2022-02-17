@@ -11,9 +11,9 @@ import Appointment from "../models/Appointment";
 
 export default function MedDog() {
 
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState<boolean>(false);
     const [appointmentName, setAppointmentName] = useState<string>("")
-    const [endDate, setEndDate] = useState<Date | null>(new Date());
+    const [endDate, setEndDate] = useState<Date>(new Date());
     const [appointments, setAppointments] = useState<Appointment[]>([])
 
     const {token} = useContext(AuthContext)
@@ -37,7 +37,11 @@ export default function MedDog() {
     }
 
     const handleTimeChange = (newEndDate: Date | null) => {
-        setEndDate(newEndDate)
+        if(newEndDate !== null) {
+            setEndDate(newEndDate)
+        } else {
+            alert("Please set a date")
+        }
     }
 
     const addNewAppointment = () => {

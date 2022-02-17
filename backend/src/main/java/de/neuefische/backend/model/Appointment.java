@@ -7,8 +7,9 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.time.ZonedDateTime;
 
 @Data
 @AllArgsConstructor
@@ -22,9 +23,9 @@ public class Appointment {
     private String username;
     private String appointmentName;
     private LocalDateTime creationDate;
-    private Date endDate;
+    private Instant endDate;
 
-    public static Appointment newAppointment (String username, String appointmentName, LocalDateTime creationDate, Date endDate){
+    public static Appointment newAppointment (String username, String appointmentName, LocalDateTime creationDate, Instant endDate){
         return Appointment.builder()
                 .username(username)
                 .appointmentName(appointmentName)

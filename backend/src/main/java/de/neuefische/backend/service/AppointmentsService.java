@@ -1,6 +1,5 @@
 package de.neuefische.backend.service;
 
-import de.neuefische.backend.BackendApplication;
 import de.neuefische.backend.model.AppointmentCreationDTO;
 import de.neuefische.backend.model.Appointment;
 import de.neuefische.backend.model.UserMongo;
@@ -16,7 +15,7 @@ import java.util.List;
 @Service
 public class AppointmentsService {
 
-    private static final Log LOG = LogFactory.getLog(BackendApplication.class);
+    private static final Log LOG = LogFactory.getLog(AppointmentsService.class);
     private final AppointmentsRepository appointmentsRepository;
 
     public AppointmentsService(AppointmentsRepository appointmentsRepository) {
@@ -39,10 +38,9 @@ public class AppointmentsService {
         return appointmentsRepository.insert(appointment);
     }
 
-    public Appointment deleteAppointment(String id) {
-        Appointment appointment = appointmentsRepository.findById(id).orElseThrow();
-        LOG.info("Appointment '" + appointment.getAppointmentName() + "' deleted.");
-        appointmentsRepository.deleteById(id);
-        return appointment;
+    public void deleteAppointment(String id) {
+        if(appointmentsRepository.existsById(id)){
+            appointmentsRepository.deleteById(id);
+        }
     }
 }
