@@ -30,22 +30,23 @@ export default function NavBar() {
     }
 
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-    //const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+    const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);
     };
-    // const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    //     setAnchorElUser(event.currentTarget);
-    // };
+
+    const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorElUser(event.currentTarget);
+    };
 
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
     };
 
-    // const handleCloseUserMenu = () => {
-    //     setAnchorElUser(null);
-    // };
+    const handleCloseUserMenu = () => {
+        setAnchorElUser(null);
+    };
 
     return (
         <Box sx={{flexGrow: 1}}>
@@ -94,6 +95,17 @@ export default function NavBar() {
                     <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
                         DoggyBag
                     </Typography>
+                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                        <MenuItem onClick={goToGettingBags}>
+                            <Typography textAlign="center">Getting bags</Typography>
+                        </MenuItem>
+                        <MenuItem onClick={goToFinestRoutes}>
+                            <Typography textAlign="center">Finest Routes</Typography>
+                        </MenuItem>
+                        <MenuItem onClick={goToMedDog}>
+                            <Typography textAlign="center">Med Dog</Typography>
+                        </MenuItem>
+                    </Box>
                     <Avatar className="avatar" onClick={handleAvatar}/>
                 </Toolbar>
             </AppBar>
