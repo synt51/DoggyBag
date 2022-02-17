@@ -22,7 +22,9 @@ export default function MedDog() {
 
     useEffect( () => {
         setupAppointments().catch(e => console.log(e.message))
-    },[token])
+
+        //eslint-disable-next-line
+    },[])
 
     const handleOpen = () => {
         setOpen(true);
