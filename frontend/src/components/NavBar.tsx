@@ -17,20 +17,32 @@ export default function NavBar() {
 
     const goToLogin = () => {
         navigate('/login')
+        handleCloseUserMenu()
     }
 
     const goToRegister = () => {
         navigate('/registration')
+        handleCloseUserMenu()
+    }
+
+    const handleLogout = () => {
+        handleCloseUserMenu()
+        localStorage.clear()
+        window.location.reload()
+        navigate('/')
     }
 
     const goToGettingBags = () => {
         navigate('/')
+        handleCloseNavMenu()
     }
     const goToFinestRoutes = () => {
         navigate('/finestroutes')
+        handleCloseNavMenu()
     }
     const goToMedDog = () => {
         navigate('/meddog')
+        handleCloseNavMenu()
     }
 
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -51,11 +63,6 @@ export default function NavBar() {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
-
-    const handleLogout = () => {
-        localStorage.clear()
-        window.location.reload()
-    }
 
     return (
         <Box sx={{flexGrow: 1}}>
