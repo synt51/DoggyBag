@@ -1,4 +1,4 @@
-import {createContext, ReactElement, useEffect, useState} from "react";
+import {createContext, ReactNode, useEffect, useState} from "react";
 import jwt_decode from 'jwt-decode';
 
 export interface AuthContextType {
@@ -11,7 +11,7 @@ export const AuthContext = createContext<AuthContextType>({
     setJwt: () => {throw Error("default function has not been initialized")}
 })
 
-export default function AuthProvider({children} : {children: ReactElement<any, any>}) {
+export default function AuthProvider({children} : {children: ReactNode}) {
     const STORAGE_KEY = "Token"
     const [token, setToken] = useState<string | undefined>(localStorage.getItem(STORAGE_KEY) || undefined)
     const [jwtDecoded, setJwtDecoded] = useState()
