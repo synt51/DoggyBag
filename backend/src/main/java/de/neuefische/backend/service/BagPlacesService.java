@@ -4,6 +4,7 @@ package de.neuefische.backend.service;
 import de.neuefische.backend.BackendApplication;
 import de.neuefische.backend.model.BagPlace;
 import de.neuefische.backend.model.BagPlaceCreationDTO;
+import de.neuefische.backend.model.UserMongo;
 import de.neuefische.backend.repo.BagPlacesRepository;
 import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
@@ -25,6 +26,10 @@ public class BagPlacesService {
 
     public List<BagPlace> getAll() {
         return bagPlacesRepository.findAll();
+    }
+
+    public List<BagPlace> getBagPlacesOfUser(UserMongo userMongo){
+        return bagPlacesRepository.findAllByUsername(userMongo.getUsername());
     }
 
     public BagPlace createBagPlace(@Validated BagPlaceCreationDTO data, String username) {
