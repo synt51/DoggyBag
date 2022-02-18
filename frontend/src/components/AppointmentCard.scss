@@ -1,9 +1,13 @@
 .card{
   min-width: 14rem;
-  background-color: lightblue;
-  border-radius: 5px;
+  min-height: 20rem;
+  background: linear-gradient(hsl(26.5, 97.6%, 67.3%), white 6.55rem);;
+  border: 5px solid red;
+  border-radius: 19px;
   margin: 1rem;
   padding: 0.5rem 0.5rem;
+  -webkit-box-shadow: 9px 9px 28px 0px #000000;
+  box-shadow: 9px 9px 28px 0px #000000;
 }
 
 ul{
