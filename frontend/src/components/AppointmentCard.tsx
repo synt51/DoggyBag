@@ -9,6 +9,21 @@ export default function AppointmentCard(props: any) {
 
     const {token} = useContext(AuthContext)
 
+    const borderStyleRed = {
+        border: "5px solid red",
+        borderradius: "19px",
+    };
+
+    const borderStyleYellow = {
+        border: "5px solid yellow",
+        borderradius: "19px",
+    };
+
+    const borderStyleGreen = {
+        border: "5px solid green",
+        borderradius: "19px",
+    };
+
     const deleteThisAppointment = () => {
         if (token) {
             deleteAppointment(props.id, token)
@@ -16,7 +31,7 @@ export default function AppointmentCard(props: any) {
     }
 
     return (
-        <div className="card">
+        <div className="card" style={borderStyleYellow}>
             <img src={pin} alt={""}/>
             <h3>{props.name}</h3>
             <ul>
