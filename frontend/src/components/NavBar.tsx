@@ -6,7 +6,12 @@ import {
     IconButton,
     Avatar, Menu, MenuItem, Tooltip
 } from "@mui/material";
+import SettingsIcon from '@mui/icons-material/Settings';
+import PersonIcon from '@mui/icons-material/Person';
+import LogoutIcon from '@mui/icons-material/Logout';
+import LoginIcon from '@mui/icons-material/Login';
 import MenuIcon from '@mui/icons-material/Menu';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import {useNavigate} from "react-router-dom";
 import './NavBar.scss';
 import React, {useContext} from "react";
@@ -44,6 +49,11 @@ export default function NavBar() {
     }
     const goToMedDog = () => {
         navigate('/meddog')
+        handleCloseNavMenu()
+    }
+
+    const goToProfile = () => {
+        navigate('/profile')
         handleCloseNavMenu()
     }
 
@@ -147,13 +157,16 @@ export default function NavBar() {
                                 open={Boolean(anchorElUser)}
                                 onClose={handleCloseUserMenu}
                             >
-                                <MenuItem>
+                                <MenuItem onClick={goToProfile}>
+                                    <PersonIcon/>
                                     <Typography textAlign="center">Profile</Typography>
                                 </MenuItem>
                                 <MenuItem>
+                                    <SettingsIcon/>
                                     <Typography textAlign="center">Settings</Typography>
                                 </MenuItem>
                                 <MenuItem onClick={handleLogout}>
+                                    <LogoutIcon/>
                                     <Typography textAlign="center">Logout</Typography>
                                 </MenuItem>
                             </Menu>
@@ -175,9 +188,11 @@ export default function NavBar() {
                                 onClose={handleCloseUserMenu}
                             >
                                 <MenuItem onClick={goToLogin}>
+                                    <LoginIcon/>
                                     <Typography textAlign="center">Login</Typography>
                                 </MenuItem>
                                 <MenuItem onClick={goToRegister}>
+                                    <PersonAddIcon/>
                                     <Typography textAlign="center">Register</Typography>
                                 </MenuItem>
                             </Menu>
