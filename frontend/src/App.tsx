@@ -8,6 +8,7 @@ import RegisterPage from "./pages/RegisterPage";
 import AuthProvider from "./context/AuthProvider";
 import FinestRoutes from "./pages/FinestRoutes";
 import MedDog from "./pages/MedDog";
+import ProfilePage from "./pages/ProfilePage";
 
 export default function App() {
     return (
@@ -20,6 +21,7 @@ export default function App() {
                     <Route path="/registration" element={<RegisterPage/>}/>
                     <Route path="/finestroutes" element={<FinestRoutes/>}/>
                     <Route path="/meddog" element={<MedDog/>}/>
+                    <Route path="/profile" element={<ProfilePage/>}/>
                 </Routes>
             </AuthProvider>
         </BrowserRouter>
