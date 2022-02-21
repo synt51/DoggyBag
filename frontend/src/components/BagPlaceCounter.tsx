@@ -14,7 +14,7 @@ export default function BagPlaceCounter(props: BagPlacesProps){
 
     return(
         <div className="bagPlaceCounter">
-            <p>{bagPlaceCount}</p>
+            <h1>{bagPlaceCount}</h1>
             <img src={bagPlaceLogo} alt={""}/>
         </div>
     )
