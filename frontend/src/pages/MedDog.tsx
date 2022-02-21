@@ -61,11 +61,11 @@ export default function MedDog() {
         <div className="medDog">
             <div className="titleMeddog">
                 <h1>MedDog</h1>
-                <h4>Your dogs' time companion</h4>
+                <p>Your dogs' time companion</p>
             </div>
             <div className="calendar">
-                <Button className="calendarButton" variant="contained" color="success" endIcon={<AddCircleOutlineIcon/>} onClick={handleOpen}>
-                    Add an Appointment?
+                <Button className="calendarButton" variant="contained" style={{backgroundColor: "white", color: "orange", borderRadius:"15px"}} endIcon={<AddCircleOutlineIcon/>} onClick={handleOpen}>
+                    New <br/> Appointment?
                 </Button>
                 <Dialog open={open} onClose={handleClose}>
                     <DialogTitle>New Appointment</DialogTitle>
@@ -93,8 +93,8 @@ export default function MedDog() {
                         </LocalizationProvider>
                     </DialogContent>
                     <DialogActions>
-                        <Button variant ="contained" color="error" onClick={handleClose}>Cancel</Button>
-                        <Button variant ="contained" color="success" onClick={addNewAppointment}>Add</Button>
+                        <Button variant ="contained" style={{backgroundColor: "#FF6464"}} onClick={handleClose}>Cancel</Button>
+                        <Button variant ="contained" style={{backgroundColor: "#4caf50"}} onClick={addNewAppointment}>Add</Button>
                     </DialogActions>
                 </Dialog>
                 <AppointmentGallery appointments={appointments}/>
