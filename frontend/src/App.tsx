@@ -9,20 +9,35 @@ import AuthProvider from "./context/AuthProvider";
 import FinestRoutes from "./pages/FinestRoutes";
 import MedDog from "./pages/MedDog";
 import ProfilePage from "./pages/ProfilePage";
+import {ThemeProvider} from "@mui/material";
+import {createTheme} from "@mui/material/styles"
 
 export default function App() {
+
+    const THEME = createTheme({
+       typography: {
+           "fontFamily": `"Montserrat"`,
+           "fontSize": 14,
+           "fontWeightLight": 300,
+           "fontWeightRegular": 400,
+           "fontWeightMedium": 500
+       }
+    });
+
     return (
         <BrowserRouter>
             <AuthProvider>
-                <NavBar/>
-                <Routes>
-                    <Route path="/" element={<Home/>}/>
-                    <Route path="/login" element={<LoginPage/>}/>
-                    <Route path="/registration" element={<RegisterPage/>}/>
-                    <Route path="/finestroutes" element={<FinestRoutes/>}/>
-                    <Route path="/meddog" element={<MedDog/>}/>
-                    <Route path="/profile" element={<ProfilePage/>}/>
-                </Routes>
+                <ThemeProvider theme={THEME}>
+                    <NavBar/>
+                    <Routes>
+                        <Route path="/" element={<Home/>}/>
+                        <Route path="/login" element={<LoginPage/>}/>
+                        <Route path="/registration" element={<RegisterPage/>}/>
+                        <Route path="/finestroutes" element={<FinestRoutes/>}/>
+                        <Route path="/meddog" element={<MedDog/>}/>
+                        <Route path="/profile" element={<ProfilePage/>}/>
+                    </Routes>
+                </ThemeProvider>
             </AuthProvider>
         </BrowserRouter>
     );
