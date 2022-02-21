@@ -16,6 +16,7 @@ import {useNavigate} from "react-router-dom";
 import './NavBar.scss';
 import React, {useContext} from "react";
 import {AuthContext} from "../context/AuthProvider";
+import {grey, orange} from "@mui/material/colors";
 
 export default function NavBar() {
 
@@ -78,7 +79,7 @@ export default function NavBar() {
 
     return (
         <Box sx={{flexGrow: 1}}>
-            <AppBar className="appBar" position="static" color="transparent">
+            <AppBar className="appBar" position="sticky" style={{backgroundColor: "orange", color: "white"}}>
                 <Toolbar>
                     <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
                         <IconButton
@@ -137,7 +138,7 @@ export default function NavBar() {
                     <Box sx={{flexGrow: 0}}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
-                                <Avatar className="avatar"/>
+                                <Avatar className="avatar" sx={{bgcolor:grey[50], color: orange[500]}}/>
                             </IconButton>
                         </Tooltip>
                         {localStorage.getItem('Token') ?
