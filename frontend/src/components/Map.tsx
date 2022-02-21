@@ -1,14 +1,15 @@
 import {MapContainer, Marker, TileLayer} from "react-leaflet";
 import ShowBagPlaces from "./ShowBagPlaces";
-import React, { useCallback, useContext, useEffect, useState} from "react";
+import React, {useCallback, useContext, useEffect, useState} from "react";
 import useGeoLocation from "../hooks/useGeoLocation";
 import L from "leaflet";
-import {Language} from "@mui/icons-material";
-import {Button} from "@mui/material";
 import './Map.scss';
+import 'leaflet/dist/leaflet.css';
 import {createBagPlace, getBagPlaces} from "../service/RequestService";
 import {AuthContext} from "../context/AuthProvider";
 import BagPlace from "../models/BagPlace";
+import {Button} from "@mui/material";
+import {Language} from "@mui/icons-material";
 
 const markerIcon = new L.Icon({
     iconUrl: require("../resources/images/marker.png"),
@@ -29,9 +30,9 @@ export default function Map() {
 
     const setupBagPlaces = () => getBagPlaces().then(data => setBagPlaces(data))
 
-    useEffect( () => {
+    useEffect(() => {
         setupBagPlaces().catch(e => console.log(e.message))
-    },[])
+    }, [])
 
     const showLocation = useCallback(() => {
         if (location.coordinates && map) {
@@ -59,31 +60,39 @@ export default function Map() {
     }, [map, onMove])
 
     return (
-        <>
-            <Button className="locationButton" variant="contained" color="success" endIcon={<Language/>}
+        <div className="mapDiv">
+            {/*<div className="locationButton" onClick={showLocation}>*/}
+            {/*    Get current <br/> location*/}
+            {/*</div>*/}
+            <Button className="locationButton" variant="contained" style={{backgroundColor: "white", color: "orange"}} endIcon={<Language/>}
                     onClick={showLocation}>
                 Get current location
             </Button>
-            <MapContainer center={center} zoom={ZOOM_LEVEL_DEFAULT} whenCreated={setMap}>
-                <TileLayer
-                    attribution={'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}
-                    url={"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"}
-                />
-                {location.loaded && !location.error && location.coordinates && (
-                    <Marker
-                        icon={markerIcon}
-                        position={[
-                            location.coordinates.lat,
-                            location.coordinates.lng,
-                        ]}
+            <div className="mapContainer">
+                <MapContainer center={center} zoom={ZOOM_LEVEL_DEFAULT} whenCreated={setMap}>
+                    <TileLayer
+                        attribution={'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}
+                        url={"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"}
                     />
-                )}
-                <ShowBagPlaces bagPlaces={bagPlaces}/>
-            </MapContainer>
+                    {location.loaded && !location.error && location.coordinates && (
+                        <Marker
+                            icon={markerIcon}
+                            position={[
+                                location.coordinates.lat,
+                                location.coordinates.lng,
+                            ]}
+                        />
+                    )}
+                    <ShowBagPlaces bagPlaces={bagPlaces}/>
+                </MapContainer>
+            </div>
             {/*creates new doggy bag marker (ONLY IF LOGGED IN) */}
-            <Button className="markerButton" variant="contained" color="success" onClick={createMarkerAtLocation}>
+            {/*<div className="markerButton" onClick={createMarkerAtLocation}>*/}
+            {/*    Mark new <br/> Doggy Bag Place*/}
+            {/*</div>*/}
+            <Button className="markerButton" variant="contained" style={{backgroundColor: "white", color: "orange"}} onClick={createMarkerAtLocation}>
                 Mark new Doggy Bag Place
             </Button>
-        </>
+        </div>
     );
 }
