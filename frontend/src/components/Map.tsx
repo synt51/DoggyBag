@@ -21,17 +21,15 @@ const markerIcon = new L.Icon({
 export default function Map() {
     const location = useGeoLocation();
     const [map, setMap] = useState<L.Map>();
-    const [center, setCenter] = useState({lat: 50.941278, lng: 6.958281});
+    const [center] = useState({lat: 50.941278, lng: 6.958281});
     const ZOOM_LEVEL_DEFAULT = 7;
     const ZOOM_LEVEL_CURRENT = 18;
     const [bagPlaces, setBagPlaces] = useState<BagPlace[]>([])
 
     const {token} = useContext(AuthContext)
 
-    const setupBagPlaces = () => getBagPlaces().then(data => setBagPlaces(data))
-
     useEffect(() => {
-        setupBagPlaces().catch(e => console.log(e.message))
+        getBagPlaces().then(data => setBagPlaces(data))
     }, [])
 
     const showLocation = useCallback(() => {
@@ -46,25 +44,9 @@ export default function Map() {
         }
     }
 
-    const onMove = useCallback(() => {
-        if (map?.getCenter()) {
-            setCenter(map?.getCenter())
-        }
-    }, [map])
-
-    useEffect(() => {
-        map?.on('move', onMove)
-        return () => {
-            map?.off('move', onMove)
-        }
-    }, [map, onMove])
-
     return (
         <div className="mapDiv">
-            {/*<div className="locationButton" onClick={showLocation}>*/}
-            {/*    Get current <br/> location*/}
-            {/*</div>*/}
-            <Button className="locationButton" variant="contained" style={{backgroundColor: "white", color: "orange"}} endIcon={<Language/>}
+            <Button className="locationButton" variant="contained" style={{backgroundColor: "white", color: "orange", borderRadius: "15px"}} endIcon={<Language/>}
                     onClick={showLocation}>
                 Get current location
             </Button>
@@ -87,10 +69,7 @@ export default function Map() {
                 </MapContainer>
             </div>
             {/*creates new doggy bag marker (ONLY IF LOGGED IN) */}
-            {/*<div className="markerButton" onClick={createMarkerAtLocation}>*/}
-            {/*    Mark new <br/> Doggy Bag Place*/}
-            {/*</div>*/}
-            <Button className="markerButton" variant="contained" style={{backgroundColor: "white", color: "orange"}} onClick={createMarkerAtLocation}>
+            <Button className="markerButton" variant="contained" style={{backgroundColor: "white", color: "orange", borderRadius: "15px"}} onClick={createMarkerAtLocation}>
                 Mark new Doggy Bag Place
             </Button>
         </div>
