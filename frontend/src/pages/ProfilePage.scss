@@ -26,7 +26,8 @@
   color: #ff9c0c;
   border-radius: 20px;
   width: 50%;
-  padding: 5px;
+  min-height: 7rem;
+  padding: 7px;
 }
 
 h3{
@@ -44,12 +45,9 @@ p{
   color: #ff9c0c;
   border-radius: 20px;
   width: 90%;
-  min-height: 19rem;
+  min-height: 20rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.settingsButton{
-  margin: 2rem;
+  margin: 1rem;
 }
