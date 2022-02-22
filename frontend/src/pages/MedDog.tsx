@@ -7,16 +7,17 @@ import {DateTimePicker, LocalizationProvider} from "@mui/lab";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import {createAppointment, getAppointments} from "../service/RequestService";
 import {AuthContext} from "../context/AuthProvider";
-import Appointment from "../models/Appointment";
+import UseAppointments from "../hooks/UseAppointments";
 
 export default function MedDog() {
 
     const [open, setOpen] = useState<boolean>(false);
     const [appointmentName, setAppointmentName] = useState<string>("")
     const [endDate, setEndDate] = useState<Date>(new Date());
-    const [appointments, setAppointments] = useState<Appointment[]>([])
 
     const {token} = useContext(AuthContext)
+
+    const {appointments, setAppointments} = UseAppointments()
 
     const setupAppointments = () => getAppointments(token).then(data => setAppointments(data))
 
@@ -97,7 +98,7 @@ export default function MedDog() {
                         <Button variant ="contained" style={{backgroundColor: "#4caf50"}} onClick={addNewAppointment}>Add</Button>
                     </DialogActions>
                 </Dialog>
-                <AppointmentGallery appointments={appointments}/>
+                <AppointmentGallery appointments={appointments} setAppointments={setAppointments}/>
             </div>
         </div>
     )

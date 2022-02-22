@@ -6,11 +6,10 @@ import 'moment/locale/de';
 
 interface AppointmentGalleryProps{
     appointments: Appointment[]
+    setAppointments: Function
 }
 
-export default function AppointmentGallery(props: AppointmentGalleryProps) {
-
-    const {appointments} = props
+export default function AppointmentGallery({appointments, setAppointments}: AppointmentGalleryProps) {
 
     const sortedAppointments = [...appointments].sort((a, b) => a.endDate > b.endDate ? 1 : -1)
 
@@ -29,6 +28,7 @@ export default function AppointmentGallery(props: AppointmentGalleryProps) {
                     id={appointment.id}
                     name={appointment.appointmentName}
                     date={moment(appointment.endDate).format('lll')}
+                    setAppointments={setAppointments}
                 />
             ))}
         </div>
