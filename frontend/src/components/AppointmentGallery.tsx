@@ -1,7 +1,6 @@
 import AppointmentCard from "./AppointmentCard";
 import './AppointmentGallery.scss';
 import Appointment from "../models/Appointment";
-import moment from "moment/moment";
 import 'moment/locale/de';
 
 interface AppointmentGalleryProps{
@@ -25,9 +24,7 @@ export default function AppointmentGallery({appointments, setAppointments}: Appo
                 .map( appointment => (
                 <AppointmentCard
                     key={appointment.id}
-                    id={appointment.id}
-                    name={appointment.appointmentName}
-                    date={moment(appointment.endDate).format('lll')}
+                    appointment={appointment}
                     setAppointments={setAppointments}
                 />
             ))}
