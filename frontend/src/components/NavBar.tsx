@@ -44,10 +44,7 @@ export default function NavBar() {
         navigate('/')
         handleCloseNavMenu()
     }
-    const goToFinestRoutes = () => {
-        navigate('/finestroutes')
-        handleCloseNavMenu()
-    }
+
     const goToMedDog = () => {
         navigate('/meddog')
         handleCloseNavMenu()
@@ -113,9 +110,6 @@ export default function NavBar() {
                             <MenuItem onClick={goToGettingBags}>
                                 <Typography textAlign="center">Getting bags</Typography>
                             </MenuItem>
-                            <MenuItem onClick={goToFinestRoutes}>
-                                <Typography textAlign="center">Finest Routes</Typography>
-                            </MenuItem>
                             <MenuItem onClick={goToMedDog}>
                                 <Typography textAlign="center">Med Dog</Typography>
                             </MenuItem>
@@ -127,9 +121,6 @@ export default function NavBar() {
                     <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
                         <MenuItem onClick={goToGettingBags}>
                             <Typography textAlign="center">Getting bags</Typography>
-                        </MenuItem>
-                        <MenuItem onClick={goToFinestRoutes}>
-                            <Typography textAlign="center">Finest Routes</Typography>
                         </MenuItem>
                         <MenuItem onClick={goToMedDog}>
                             <Typography textAlign="center">Med Dog</Typography>
