@@ -10,9 +10,6 @@ export default function Home() {
 
     return (
         <div className="homePage">
-            <div className="title">
-                {/*<h1>Getting bags</h1>*/}
-            </div>
             <div className="lower-box">
                 <div className="map">
                     <QueryClientProvider client={queryClient}>
