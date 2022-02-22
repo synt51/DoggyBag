@@ -55,7 +55,7 @@ export default function NavBar() {
 
     const goToProfile = () => {
         navigate('/profile')
-        handleCloseNavMenu()
+        handleCloseUserMenu()
     }
 
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
