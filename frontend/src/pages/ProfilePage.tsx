@@ -15,11 +15,8 @@ export default function ProfilePage() {
 
     const navigate = useNavigate()
 
-    const setupBagPlaces = () => getBagPlacesOfUser(token).then(data => setBagPlaces(data))
-
     useEffect(() => {
-        setupBagPlaces().catch(e => console.log(e.message))
-
+        getBagPlacesOfUser(token).then(data => setBagPlaces(data))
         //eslint-disable-next-line
     }, [])
 
