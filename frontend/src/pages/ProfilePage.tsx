@@ -28,7 +28,6 @@ export default function ProfilePage() {
         navigate('/settings')
     }
 
-    console.log(bagPlaces)
 
     return (
         <div className="profilePage">
