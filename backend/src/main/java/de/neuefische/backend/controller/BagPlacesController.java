@@ -12,11 +12,11 @@ import java.util.List;
 @RequestMapping("api/bagplaces")
 public class BagPlacesController {
 
-
     private final BagPlacesService bagPlacesService;
 
     public BagPlacesController(BagPlacesService bagPlacesService) {
         this.bagPlacesService = bagPlacesService;
+
     }
 
     @GetMapping

@@ -50,15 +50,14 @@ export default function LoginPage() {
                                onChange={onNameChange} value={username}/>
                     <TextField type="password" id="outlined-password" label="Password" required
                                variant="outlined" onChange={onPasswordChange}  value={password}/>
-                    <Button type="submit" variant="contained" endIcon={<SendIcon/>}>
+                    <Button className="loginButton" type="submit" variant="contained" style={{backgroundColor: "white", color: "orange"}} endIcon={<SendIcon/>}>
                         Log in
                     </Button>
                 </form>
             </div>
             <div className="registerBox">
-                <h3>Still not registered?</h3>
-                <Button className="registerButton" variant="contained" onClick={handleRegisterButton}>
-                        -Then click here-
+                <Button className="registerButton" variant="contained" style={{backgroundColor: "white", color: "orange"}} onClick={handleRegisterButton}>
+                    Still not registered? <br/>-Then click here-
                 </Button>
             </div>
         </div>

@@ -1,8 +1,18 @@
+html{
+  height: 100%;
+}
+
 body {
   margin: 0;
+  height: 100%;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
+  background: rgb(255,255,255);
+  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,156,12,1) 100%);
+  color: white;
+  font-family: 'Montagu Slab', serif;
+  font-family: 'Montserrat', sans-serif;
   /*-webkit-font-smoothing: antialiased;*/
   /*-moz-osx-font-smoothing: grayscale;*/
 }
@@ -13,6 +23,8 @@ body {
 /*}*/
 
 .leaflet-container{
+  top: 1rem;
   width: 100%;
-  height: 55vh;
+  height: 66vh;
+  border-radius: 20px;
 }

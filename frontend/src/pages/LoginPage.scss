@@ -1,23 +1,32 @@
 .loginPage {
-  background: linear-gradient(hsl(26.5, 97.6%, 67.3%), white 6.55rem);
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
+}
+
+.loginBox{
+  height: 69vh;
+}
+
+.input{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
 }
 
 h1{
   text-align: center;
 }
 
-.input{
-  top:100px;
+.registerBox{
+  display: flex;
+  flex-direction: column;
   align-items: center;
-}
-
-h3 {
-  text-align: center;
+  justify-content: center;
 }
 
 .registerButton{
-  top: 20px;
-
 }

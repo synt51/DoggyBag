@@ -41,11 +41,11 @@ export default function RegisterPage(){
     return (
         <div className="loginPage">
             <h1>Register</h1>
-            <form onSubmit={handleSubmit}>
+            <form className="input" onSubmit={handleSubmit}>
                 <TextField id="outlined-username" label="Username" required variant="outlined" onChange={onNameChange} value={username}/>
                 <TextField id="outlined-email" label="Email" required variant="outlined" onChange={onEmailChange} value={email}/>
                 <TextField type="password" id="outlined-password" label="Password" required variant="outlined" onChange={onPasswordChange} value={password}/>
-                <Button type="submit" variant="contained" endIcon={<SendIcon />}>
+                <Button type="submit" variant="contained" style={{backgroundColor: "white", color: "orange"}} endIcon={<SendIcon />}>
                     Register now!
                 </Button>
             </form>

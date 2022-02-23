@@ -1,14 +1,16 @@
 import AppointmentCard from "./AppointmentCard";
 import './AppointmentGallery.scss';
 import Appointment from "../models/Appointment";
+import 'moment/locale/de';
 
 interface AppointmentGalleryProps{
     appointments: Appointment[]
+    setAppointments: Function
 }
 
-export default function AppointmentGallery(props: AppointmentGalleryProps) {
+export default function AppointmentGallery({appointments, setAppointments}: AppointmentGalleryProps) {
 
-    const {appointments} = props
+    const sortedAppointments = [...appointments].sort((a, b) => a.endDate > b.endDate ? 1 : -1)
 
     if(!appointments) {
         return <div className="gallery">
@@ -18,12 +20,12 @@ export default function AppointmentGallery(props: AppointmentGalleryProps) {
 
     return (
         <div className="gallery">
-            {appointments.map( appointment => (
+            {sortedAppointments
+                .map( appointment => (
                 <AppointmentCard
                     key={appointment.id}
-                    id={appointment.id}
-                    name={appointment.appointmentName}
-                    date={appointment.endDate}
+                    appointment={appointment}
+                    setAppointments={setAppointments}
                 />
             ))}
         </div>

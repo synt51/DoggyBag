@@ -1,18 +1,24 @@
 .medDog {
-  background: linear-gradient(hsl(26.5, 97.6%, 67.3%), white 6.55rem);
   display: flex;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
-}
-
-.titleMeddog{
-  position: absolute;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
 }
 
 .calendar{
-  position: relative;
-  top: 135px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+h1{
+  margin-bottom:0;
+}
+
+p{
+  margin: 0;
+  margin-bottom: 1rem;
+  font-size: small;
 }
 

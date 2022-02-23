@@ -27,6 +27,7 @@ public class BagPlacesService {
         return bagPlacesRepository.findAll();
     }
 
+
     public BagPlace createBagPlace(@Validated BagPlaceCreationDTO data, String username) {
         final BagPlace bagPlace = BagPlace.newBagPlace(username, LocalDateTime.now(), data.getLat(), data.getLng());
 

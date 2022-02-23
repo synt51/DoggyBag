@@ -23,6 +23,15 @@ export const getBagPlaces =  () => {
     return axios.get("/api/bagplaces").then(response => response.data)
 }
 
+export const getBagPlacesOfUser = (token?: string) => {
+    return axios.get("/api/bagplaces", token ? {
+        headers: {
+            "Authorization": token
+        }
+    } : {})
+        .then(response => response.data)
+}
+
 export const createBagPlace = (newMarker: BagPlaceCreationDTO, token?: string) => {
     return axios.post("/api/bagplaces", newMarker, token ? {
         headers: {
