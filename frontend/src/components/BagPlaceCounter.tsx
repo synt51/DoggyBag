@@ -6,9 +6,7 @@ import "./BagPlaceCounter.scss"
 interface BagPlacesProps{
     bagPlaces: BagPlace[]
 }
-export default function BagPlaceCounter(props: BagPlacesProps){
-
-    const {bagPlaces} = props
+export default function BagPlaceCounter({bagPlaces}: BagPlacesProps){
 
     const bagPlaceCount = bagPlaces.length;
 
