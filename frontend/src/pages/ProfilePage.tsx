@@ -28,7 +28,6 @@ export default function ProfilePage() {
         navigate('/settings')
     }
 
-
     return (
         <div className="profilePage">
             <div className="upperBox">

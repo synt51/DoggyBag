@@ -11,6 +11,7 @@ import MedDog from "./pages/MedDog";
 import ProfilePage from "./pages/ProfilePage";
 import {ThemeProvider} from "@mui/material";
 import {createTheme} from "@mui/material/styles"
+import RequireAuth from "./context/RequireAuth";
 
 export default function App() {
 
@@ -35,7 +36,11 @@ export default function App() {
                         <Route path="/registration" element={<RegisterPage/>}/>
                         <Route path="/finestroutes" element={<FinestRoutes/>}/>
                         <Route path="/meddog" element={<MedDog/>}/>
-                        <Route path="/profile" element={<ProfilePage/>}/>
+                        <Route path="/profile" element={
+                            <RequireAuth>
+                                <ProfilePage/>
+                            </RequireAuth>
+                        }/>
                     </Routes>
                 </ThemeProvider>
             </AuthProvider>
