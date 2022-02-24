@@ -3,9 +3,12 @@ package de.neuefische.backend.controller;
 import de.neuefische.backend.model.UserDto;
 import de.neuefische.backend.service.MongoUserDetailsService;
 import de.neuefische.backend.service.RegisterService;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.security.Principal;
 import java.util.Collection;
@@ -15,12 +18,10 @@ import java.util.Collection;
 @RequestMapping("/api")
 public class UserController {
 
-    private final MongoUserDetailsService mongoUserDetailsService;
     private final RegisterService registerService;
 
 
-    public UserController(MongoUserDetailsService mongoUserDetailsService, RegisterService registerService) {
-        this.mongoUserDetailsService = mongoUserDetailsService;
+    public UserController(RegisterService registerService) {
         this.registerService = registerService;
     }
 
@@ -42,7 +43,11 @@ public class UserController {
 
     @PostMapping("/register")
     public void register(@RequestBody UserDto userDto){
-        registerService.registerUser(userDto);
+        try {
+            registerService.registerUser(userDto);
+        } catch (AuthenticationException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User already exists.");
+        }
     }
 
 }

@@ -6,10 +6,12 @@ import de.neuefische.backend.model.UserMongo;
 import de.neuefische.backend.repo.MongoUserRepository;
 import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -34,6 +36,7 @@ public class RegisterService {
             repository.insert(userMongo);
         } catch (Exception e){
             LOG.info("User " + userMongo.getUsername() + " already exists.");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Username already exists.");
         }
     }
 }

@@ -17,7 +17,12 @@ export const loginRequest = (loginInput: LoginData) =>
 export const registerRequest = (loginInput: RegisterData) =>
     axios.post("/api/register", loginInput)
         .then(response => response.data)
-        .catch(console.error)
+        .catch(function (error) {
+            if (error.response.status === 400) {
+                alert("Username already exists!")
+                console.log(error)
+            }
+        })
 
 export const getBagPlaces =  () => {
     return axios.get("/api/bagplaces").then(response => response.data)
