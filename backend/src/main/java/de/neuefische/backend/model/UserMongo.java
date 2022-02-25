@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -22,13 +22,13 @@ public class UserMongo implements UserDetails {
     String username;
     String password;
     String email;
-    Collection<? extends GrantedAuthority> authorities;
+    transient List<GrantedAuthority> authorities;
     boolean enabled;
     boolean accountNonExpired;
     boolean accountNonLocked;
     boolean credentialsNonExpired;
 
-    public static UserMongo newUser(String username, String password, String email, Collection<? extends GrantedAuthority> authorities){
+    public static UserMongo newUser(String username, String password, String email, List<GrantedAuthority> authorities){
         return UserMongo.builder()
                 .username(username)
                 .password(password)

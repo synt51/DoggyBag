@@ -10,14 +10,17 @@ export const loginRequest = (loginInput: LoginData) =>
         .catch(function (error) {
             if (error.response.status === 400) {
                 alert("Please check your username and password!")
-                console.log(error)
             }
         })
 
 export const registerRequest = (loginInput: RegisterData) =>
     axios.post("/api/register", loginInput)
         .then(response => response.data)
-        .catch(console.error)
+        .catch(function (error) {
+            if (error.response.status === 400) {
+                alert("Username already exists!")
+            }
+        })
 
 export const getBagPlaces =  () => {
     return axios.get("/api/bagplaces").then(response => response.data)
@@ -66,7 +69,6 @@ export const createAppointment = (newAppointment: AppointmentDTO, token: string)
         .catch(function (error) {
             if (error.response.status === 500) {
                 alert("You have to be logged in.")
-                console.log(error)
             }
         })
 }
