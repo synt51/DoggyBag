@@ -25,14 +25,14 @@ class MongoUserDetailsServiceTest {
                 .authorities(List.of()).enabled(true).accountNonExpired(true).accountNonLocked(true)
                 .credentialsNonExpired(true).build();
 
-        when(testRepository.findByUsername(anyString())).thenReturn(user);
+        when(testRepository.findByUsername(anyString())).thenReturn(Optional.ofNullable(user));
 
         assertEquals(user, testService.loadUserByUsername(""));
     }
 
     @Test
     void shouldThrowExceptionIfUserIsNull(){
-        when(testRepository.findByUsername(anyString())).thenReturn(null);
+        when(testRepository.findByUsername(anyString())).thenReturn(Optional.empty());
 
         assertThrows(UsernameNotFoundException.class, () -> testService.loadUserByUsername(""));
     }
@@ -45,7 +45,7 @@ class MongoUserDetailsServiceTest {
                 .credentialsNonExpired(true).build();
 
         when(principal.getName()).thenReturn(actualUser.getUsername());
-        when(testRepository.findByUsername(anyString())).thenReturn(actualUser);
+        when(testRepository.findByUsername(anyString())).thenReturn(Optional.of(actualUser));
 
         UserMongo user = testService.getUserByPrincipal(principal);
 
