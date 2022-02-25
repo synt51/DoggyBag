@@ -35,7 +35,7 @@ public class RegisterService {
         try {
             repository.insert(userMongo);
         } catch (Exception e){
-            LOG.info("User " + userMongo.getUsername() + " already exists.");
+            LOG.info("User already exists.");
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Username already exists.");
         }
     }
