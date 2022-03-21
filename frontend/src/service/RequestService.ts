@@ -8,8 +8,8 @@ export const loginRequest = (loginInput: LoginData) =>
     axios.post("auth/login", loginInput)
         .then(response => response.data)
         .catch(function (error) {
-            if (error.response.status === 400) {
-                alert("Please check your username and password!")
+            if (error.response.status >= 300 && error.response.status <= 599 ) {
+                alert(error +"\n" + error.response.data.message)
             }
         })
 
@@ -17,8 +17,8 @@ export const registerRequest = (loginInput: RegisterData) =>
     axios.post("/api/register", loginInput)
         .then(response => response.data)
         .catch(function (error) {
-            if (error.response.status === 400) {
-                alert("Username already exists!")
+            if (error.response.status >= 300 && error.response.status <= 599 ) {
+                alert(error +"\n" + error.response.data.message)
             }
         })
 
